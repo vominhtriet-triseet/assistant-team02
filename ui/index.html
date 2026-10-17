@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart AI Assistant — Chat</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fc;
+      color: #172b4d;
+    }
+    header {
+      padding: 24px 32px;
+      background: #1e3152;
+      color: white;
+    }
+    header p { color: #d4def0; margin-bottom: 0; }
+    main {
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 28px;
+      background: white;
+      border: 1px solid #dce5f3;
+      border-radius: 16px;
+      box-shadow: 0 8px 28px #1e315210;
+    }
+    .welcome { text-align: center; padding: 35px 10px; }
+    .welcome h2 { color: #245bd6; }
+    .examples {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 20px 0 30px;
+    }
+    .example {
+      padding: 16px;
+      border-radius: 10px;
+      background: #f0f5ff;
+      line-height: 1.5;
+    }
+    form { display: flex; gap: 10px; }
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 14px;
+      border: 1px solid #bdcbe0;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+    button {
+      padding: 0 22px;
+      border: 0;
+      border-radius: 9px;
+      color: white;
+      background: #2864e8;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    #status { color: #64748b; font-size: 14px; }
+    footer { text-align: center; color: #64748b; font-size: 13px; }
+    @media (max-width: 600px) {
+      main { margin: 16px; padding: 18px; }
+      .examples { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Smart AI Assistant</h1>
+    <p>Your study, our support</p>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <h2>Welcome to your AI Assistant!</h2>
+      <p>Describe your tasks in natural language.</p>
+      <p>This is a UI placeholder. Backend integration is not implemented.</p>
+    </section>
+
+    <section class="examples" aria-label="Example requests">
+      <div class="example"><strong>Create tasks</strong><br>
+        I need to review calculus tomorrow.
+      </div>
+      <div class="example"><strong>Plan schedule</strong><br>
+        Help me plan my study time next week.
+      </div>
+      <div class="example"><strong>Update task</strong><br>
+        Mark my assignment as complete.
+      </div>
+      <div class="example"><strong>Ask a question</strong><br>
+        Where is the library?
+      </div>
+    </section>
+
+    <form id="chat-form">
+      <input id="message" type="text"
+        placeholder="Type your message here..."
+        aria-label="Your message" required>
+      <button type="submit">Send</button>
+    </form>
+    <p id="status" role="status">Demo only — no message is sent to a backend.</p>
+  </main>
+
+  <footer>
+    Chat page placeholder · Streamlit integration will be added later
+  </footer>
+
+  <script>
+    document.getElementById("chat-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      document.getElementById("status").textContent =
+        "Placeholder only. Backend integration is not available yet.";
+    });
+  </script>
+</body>
+</html>
