@@ -1,38 +1,34 @@
-# main.py
-# Backend component for Personal Assistant Bot
-
 class AssistantBackend:
     def __init__(self):
+        # Định nghĩa các tính năng/lịch trình của trợ lý cá nhân
         self.capabilities = [
-            "help - Lists what the bot can do",
-            "schedule view - View your daily schedule",
-            "schedule add - Add a new appointment or task",
-            "schedule remove - Delete an existing task"
+            "Help: Show all available commands and capabilities.",
+            "Scheduling: Manage your daily calendar and appointments.",
+            "Training Office: View and manage professional development sessions."
         ]
 
     def handle_message(self, message: str) -> str:
         """
-        Processes incoming messages and returns the appropriate response.
+        Xử lý tin nhắn đầu vào từ người dùng.
+        - Trả về danh sách tính năng nếu tin nhắn là 'help'.
+        - Tìm kiếm tính năng phù hợp nếu tin nhắn chứa từ khóa.
         """
         if not message:
-            return "I didn't catch that. Type 'help' to see what I can do."
+            return "Please say something."
             
-        normalized_message = message.strip().lower()
-        
-        if normalized_message == 'help':
-            return self.get_help_message()
-            
-        return "Command not recognized. Type 'help' to see all available commands."
+        clean_msg = message.strip().lower()
 
-    def get_help_message(self) -> str:
-        """
-        Returns a formatted string listing all bot capabilities.
-        """
-        prefix = "Here is what I can do for you:\n"
-        return prefix + "\n".join(f"- {cap}" for cap in self.capabilities)
+        # Xử lý lệnh 'help' cơ bản
+        if clean_msg == 'help':
+            return "Here is what I can do:\n" + "\n".join([f"- {cap}" for cap in self.capabilities])
 
-if __name__ == "__main__":
-    backend = AssistantBackend()
-    print("Personal Assistant Backend initialized. Type 'help' to test:")
-    user_input = input("> ")
-    print(backend.handle_message(user_input))
+        # Tìm kiếm các tính năng chứa từ khóa (Yêu cầu mới)
+        matched_capabilities = [
+            cap for cap in self.capabilities 
+            if clean_msg in cap.lower()
+        ]
+
+        if matched_capabilities:
+            return "Found matching capabilities:\n" + "\n".join([f"- {cap}" for cap in matched_capabilities])
+
+        return "I'm sorry, I don't understand that command. Type 'help' to see what I can do."
