@@ -1,0 +1,27 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="680" viewBox="0 0 1000 680">
+  <rect width="1000" height="680" fill="#f3f6fc"/>
+  <rect x="0" y="0" width="1000" height="100" fill="#1e3152"/>
+  <text x="36" y="43" fill="#ffffff" font-size="27" font-family="Arial" font-weight="bold">Smart AI Assistant</text>
+  <text x="36" y="72" fill="#d4def0" font-size="15" font-family="Arial">Your study, our support</text>
+  <rect x="50" y="130" width="900" height="480" rx="16" fill="#ffffff" stroke="#dce5f3"/>
+  <text x="82" y="180" fill="#245bd6" font-size="27" font-family="Arial" font-weight="bold">Welcome to your AI Assistant!</text>
+  <text x="82" y="214" fill="#526783" font-size="16" font-family="Arial">Describe your tasks in natural language.</text>
+  <rect x="82" y="250" width="390" height="90" rx="10" fill="#f0f5ff"/>
+  <text x="102" y="282" fill="#172b4d" font-size="17" font-family="Arial" font-weight="bold">Create tasks</text>
+  <text x="102" y="311" fill="#526783" font-size="15" font-family="Arial">Review calculus tomorrow.</text>
+  <rect x="490" y="250" width="420" height="90" rx="10" fill="#f0f5ff"/>
+  <text x="510" y="282" fill="#172b4d" font-size="17" font-family="Arial" font-weight="bold">Plan schedule</text>
+  <text x="510" y="311" fill="#526783" font-size="15" font-family="Arial">Plan study time next week.</text>
+  <rect x="82" y="360" width="390" height="90" rx="10" fill="#f0f5ff"/>
+  <text x="102" y="392" fill="#172b4d" font-size="17" font-family="Arial" font-weight="bold">Update task</text>
+  <text x="102" y="421" fill="#526783" font-size="15" font-family="Arial">Mark my assignment complete.</text>
+  <rect x="490" y="360" width="420" height="90" rx="10" fill="#f0f5ff"/>
+  <text x="510" y="392" fill="#172b4d" font-size="17" font-family="Arial" font-weight="bold">Ask a question</text>
+  <text x="510" y="421" fill="#526783" font-size="15" font-family="Arial">Where is the library?</text>
+  <rect x="82" y="490" width="680" height="54" rx="9" fill="#ffffff" stroke="#bdcbe0"/>
+  <text x="102" y="523" fill="#71829a" font-size="16" font-family="Arial">Type your message here...</text>
+  <rect x="780" y="490" width="130" height="54" rx="9" fill="#2864e8"/>
+  <text x="845" y="523" text-anchor="middle" fill="#ffffff" font-size="16" font-family="Arial">Send</text>
+  <text x="82" y="572" fill="#64748b" font-size="13" font-family="Arial">Placeholder only — backend integration is not implemented.</text>
+  <text x="500" y="646" text-anchor="middle" fill="#64748b" font-size="14" font-family="Arial">Chat page mockup · Streamlit integration planned for later</text>
+</svg>
