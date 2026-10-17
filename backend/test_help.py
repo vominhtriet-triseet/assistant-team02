@@ -1,4 +1,3 @@
-# test_backend.py
 import unittest
 from main import AssistantBackend
 
@@ -6,6 +5,7 @@ class TestAssistantHelp(unittest.TestCase):
     def setUp(self):
         self.backend = AssistantBackend()
 
+    # --- BỘ TEST CŨ CỦA BẠN (Giữ nguyên tiêu chí nghiệm thu ban đầu) ---
     def test_help(self):
         """
         Test that the backend correctly replies to 'help' with the list of capabilities.
@@ -27,6 +27,19 @@ class TestAssistantHelp(unittest.TestCase):
         
         self.assertEqual(response_upper, response_spaced)
         self.assertIn("Lists what the bot can do", response_upper)
+
+
+    # --- 2 BỘ TEST MỚI (Thêm vào theo yêu cầu tìm kiếm 'training') ---
+    def test_training_keyword_finds_office(self):
+        """Test mới 1: Từ khóa viết thường 'training' phải tìm thấy 'Training Office'"""
+        response = self.backend.handle_message("training")
+        self.assertIn("Training Office", response)
+        self.assertIn("Found matching capabilities:", response)
+
+    def test_training_office_exact_match(self):
+        """Test mới 2: Nhập đầy đủ 'Training Office' vẫn tìm thấy chính xác"""
+        response = self.backend.handle_message("Training Office")
+        self.assertIn("Training Office", response)
 
 if __name__ == '__main__':
     unittest.main()
