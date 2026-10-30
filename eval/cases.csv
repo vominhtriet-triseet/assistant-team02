@@ -1,9 +1,16 @@
-How is you today?
-What the dog doing?
-Is ts AI slop?
-Are you?
-Are you coming to the tree?
-Can you hear the silence?
-Can you see the dark?
-Can you fix the broken?
-Can you feel my heart?
+id,input,expected_intent,expected_text
+1,hello,greeting,Hello
+2,help,help,campus offices
+3,Where is the library?,office,room B.201
+4,When does the training office open?,office,Mon-Fri 07:30-16:30
+5,Where is the library circulation service at Thu Duc?,office,C108
+6,What are the faculty office hours?,office,Several offices match
+7,Where is the Office of Academic Affairs?,office,not published
+8,I have a calculus problem set due Friday,clarification,how many hours can you study
+9,Data Structures midterm next Wednesday and I can study 3 hours a day,planning,Here is a draft schedule
+10,I need to review calculus tomorrow and finish my programming assignment before 5 PM,clarification,2 tasks
+11,essay due Friday. 2 hours on weekdays,planning,Here is a draft schedule
+12,final exam tomorrow and I can study 2 hours a day,planning,Not enough time
+13,show my plan,planning,no tasks yet
+14,What is the weather today?,fallback,can't help with that yet
+15,mark essay as done,planning,nothing to mark as done

@@ -1,11 +1,10 @@
-# ui/
 # Student-Facing UI Flow
 
 ## 1. Purpose
 
 This document describes the planned user interface flow for the Smart AI Assistant. The interface helps students convert natural-language requests into structured tasks and actionable schedules.
 
-This document describes the intended behavior only. It does not imply that the UI or backend has been implemented.
+The chat page in `ui/index.html` implements this flow for the planning feature. Start it with `python -m assistant serve` and open http://127.0.0.1:8000. External calendar sync and voice input are still out of scope.
 
 ## 2. User Flow
 
