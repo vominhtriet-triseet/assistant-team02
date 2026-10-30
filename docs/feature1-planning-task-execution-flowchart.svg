@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 595.28 841.89">
+<rect width="595.28" height="841.89" fill="#FFFFFF"/>
+<style>text{font-family:Arial,Helvetica,sans-serif;fill:#172B4D} .small{font-size:7.8px}.muted{fill:#52647A}.bold{font-weight:700}</style>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#52647A"/></marker></defs>
+<text x="34" y="38" font-size="18" class="bold">Feature 1: Planning and Task Execution</text>
+<text x="34" y="56" font-size="8.4" class="muted">Flowchart based on the team's decomposition, pattern recognition, and abstraction analysis</text>
+<line x1="34" y1="68" x2="561" y2="68" stroke="#9AA9BC" stroke-width="0.8"/>
+<text x="34" y="84" font-size="7.4" fill="#1D4ED8" class="bold">Input</text>
+<text x="71" y="84" font-size="7.4" class="bold">Process</text>
+<text x="119" y="84" font-size="7.4" fill="#A04000" class="bold">Decision</text>
+<text x="176" y="84" font-size="7.4" fill="#7C3AED" class="bold">Exception / revision</text>
+<polyline points="297.50,97.89 297.50,115.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,163.89 297.50,181.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,235.89 297.50,259.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,305.89 297.50,327.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,373.89 297.50,393.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,443.89 297.50,461.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,515.89 297.50,539.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,585.89 297.50,605.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,655.89 297.50,675.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="297.50,729.89 297.50,755.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<polyline points="170.00,208.89 147.00,216.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="147" y="213.89" font-size="7.4" class="bold muted">NO</text>
+<polyline points="22.00,216.89 154.00,216.89 154.00,139.89 170.00,139.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="95" y="173.89" font-size="7.4" class="bold muted">back</text>
+<polyline points="170.00,488.89 147.00,501.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="146" y="491.89" font-size="7.4" class="bold muted">NO</text>
+<polyline points="22.00,501.89 154.00,501.89 154.00,418.89 170.00,418.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="94" y="451.89" font-size="7.4" class="bold muted">back</text>
+<polyline points="425.00,702.89 448.00,708.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="426" y="702.89" font-size="7.4" class="bold muted">YES</text>
+<polyline points="448.00,708.89 575.00,708.89 575.00,350.89 425.00,350.89" fill="none" stroke="#52647A" stroke-width="1.2" marker-end="url(#arrow)"/>
+<text x="481" y="363.89" font-size="7.4" class="bold muted">recalculate</text>
+<text x="428" y="496" font-size="7.4" class="bold muted">YES</text>
+<text x="428" y="712" font-size="7.4" class="bold muted">NO</text>
+<rect x="170" y="55.88980000000004" width="255" height="42" rx="8" fill="#1D4ED8" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="70.09" font-size="9.0" text-anchor="middle" class="bold">START</text>
+<text x="297.5" y="80.09" font-size="7.8" text-anchor="middle" class="">User goal, task, deadline, priority,</text>
+<text x="297.5" y="90.09" font-size="7.8" text-anchor="middle" class="">availability, or project requirement</text>
+<rect x="170" y="115.88980000000004" width="255" height="48" rx="8" fill="#E8F0FF" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="137.69" font-size="9.0" text-anchor="middle" class="bold">1. Extract goals and facts</text>
+<text x="297.5" y="147.69" font-size="7.8" text-anchor="middle" class="">Separate known information from missing details.</text>
+<rect x="170" y="181.88980000000004" width="255" height="54" rx="8" fill="#FFF1E8" stroke="#A04000" stroke-width="1.1"/>
+<text x="297.5" y="202.09" font-size="9.0" text-anchor="middle" class="bold">Required information complete?</text>
+<text x="297.5" y="212.09" font-size="7.8" text-anchor="middle" class="">Check duration, deadline, availability,</text>
+<text x="297.5" y="222.09" font-size="7.8" text-anchor="middle" class="">and dependencies.</text>
+<rect x="22" y="183.88980000000004" width="125" height="66" rx="8" fill="#F3E8FF" stroke="#7C3AED" stroke-width="1.1"/>
+<text x="84.5" y="210.09" font-size="9.0" text-anchor="middle" class="bold">CLARIFY</text>
+<text x="84.5" y="220.09" font-size="7.8" text-anchor="middle" class="">Ask a focused question.</text>
+<text x="84.5" y="230.09" font-size="7.8" text-anchor="middle" class="">Do not invent missing information.</text>
+<rect x="170" y="259.88980000000004" width="255" height="46" rx="8" fill="#E8F0FF" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="280.69" font-size="9.0" text-anchor="middle" class="bold">2. Create or update tasks</text>
+<text x="297.5" y="290.69" font-size="7.8" text-anchor="middle" class="">Break the goal into manageable work items.</text>
+<rect x="170" y="327.88980000000004" width="255" height="46" rx="8" fill="#E8F0FF" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="348.69" font-size="9.0" text-anchor="middle" class="bold">3. Set priority and dependencies</text>
+<text x="297.5" y="358.69" font-size="7.8" text-anchor="middle" class="">Use urgency, importance, deadlines, and prerequisites.</text>
+<rect x="170" y="393.88980000000004" width="255" height="50" rx="8" fill="#E8F0FF" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="412.09" font-size="9.0" text-anchor="middle" class="bold">4. Check constraints</text>
+<text x="297.5" y="422.09" font-size="7.8" text-anchor="middle" class="">Compare duration, availability, deadlines,</text>
+<text x="297.5" y="432.09" font-size="7.8" text-anchor="middle" class="">and dependencies.</text>
+<rect x="170" y="461.88980000000004" width="255" height="54" rx="8" fill="#FFF1E8" stroke="#A04000" stroke-width="1.1"/>
+<text x="297.5" y="486.69" font-size="9.0" text-anchor="middle" class="bold">Plan feasible?</text>
+<text x="297.5" y="496.69" font-size="7.8" text-anchor="middle" class="">Can the requested work fit the known constraints?</text>
+<rect x="22" y="461.88980000000004" width="125" height="80" rx="8" fill="#F3E8FF" stroke="#7C3AED" stroke-width="1.1"/>
+<text x="84.5" y="490.49" font-size="9.0" text-anchor="middle" class="bold">REVISE</text>
+<text x="84.5" y="500.49" font-size="7.8" text-anchor="middle" class="">Explain conflicts and list</text>
+<text x="84.5" y="510.49" font-size="7.8" text-anchor="middle" class="">unscheduled tasks.</text>
+<text x="84.5" y="520.49" font-size="7.8" text-anchor="middle" class="">User changes tasks or constraints.</text>
+<rect x="170" y="539.8898" width="255" height="46" rx="8" fill="#E8F0FF" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="560.69" font-size="9.0" text-anchor="middle" class="bold">5. Build a proposed schedule</text>
+<text x="297.5" y="570.69" font-size="7.8" text-anchor="middle" class="">Place tasks in available time; keep assumptions visible.</text>
+<rect x="170" y="605.8898" width="255" height="50" rx="8" fill="#F5F7FA" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="628.69" font-size="9.0" text-anchor="middle" class="bold">6. Present the result</text>
+<text x="297.5" y="638.69" font-size="7.8" text-anchor="middle" class="">Show schedule, warnings, assumptions, and pending work.</text>
+<rect x="170" y="675.8898" width="255" height="54" rx="8" fill="#FFF1E8" stroke="#A04000" stroke-width="1.1"/>
+<text x="297.5" y="700.69" font-size="9.0" text-anchor="middle" class="bold">User changes something?</text>
+<text x="297.5" y="710.69" font-size="7.8" text-anchor="middle" class="">Deadline, priority, task status, or requirement changed?</text>
+<rect x="448" y="673.8898" width="125" height="70" rx="8" fill="#F3E8FF" stroke="#7C3AED" stroke-width="1.1"/>
+<text x="510.5" y="702.09" font-size="9.0" text-anchor="middle" class="bold">UPDATE</text>
+<text x="510.5" y="712.09" font-size="7.8" text-anchor="middle" class="">Apply the change and</text>
+<text x="510.5" y="722.09" font-size="7.8" text-anchor="middle" class="">recalculate the plan.</text>
+<rect x="170" y="755.8898" width="255" height="52" rx="8" fill="#F5F7FA" stroke="#1D4ED8" stroke-width="1.1"/>
+<text x="297.5" y="779.69" font-size="9.0" text-anchor="middle" class="bold">7. Track progress and next action</text>
+<text x="297.5" y="789.69" font-size="7.8" text-anchor="middle" class="">Mark work state; revise the proposal when the situation changes.</text>
+<text x="34" y="832" font-size="7.4" class="muted">A proposed schedule is reviewed and revised when the user's situation changes.</text>
+<text x="450" y="832" font-size="7.4" class="bold muted">Team 02</text>
+</svg>
