@@ -1,120 +1,237 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart AI Assistant — Chat</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f6fc;
-      color: #172b4d;
-    }
-    header {
-      padding: 24px 32px;
-      background: #1e3152;
-      color: white;
-    }
-    header p { color: #d4def0; margin-bottom: 0; }
-    main {
-      max-width: 850px;
-      margin: 40px auto;
-      padding: 28px;
-      background: white;
-      border: 1px solid #dce5f3;
-      border-radius: 16px;
-      box-shadow: 0 8px 28px #1e315210;
-    }
-    .welcome { text-align: center; padding: 35px 10px; }
-    .welcome h2 { color: #245bd6; }
-    .examples {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin: 20px 0 30px;
-    }
-    .example {
-      padding: 16px;
-      border-radius: 10px;
-      background: #f0f5ff;
-      line-height: 1.5;
-    }
-    form { display: flex; gap: 10px; }
-    input {
-      flex: 1;
-      min-width: 0;
-      padding: 14px;
-      border: 1px solid #bdcbe0;
-      border-radius: 9px;
-      font-size: 16px;
-    }
-    button {
-      padding: 0 22px;
-      border: 0;
-      border-radius: 9px;
-      color: white;
-      background: #2864e8;
-      cursor: pointer;
-      font-size: 15px;
-    }
-    #status { color: #64748b; font-size: 14px; }
-    footer { text-align: center; color: #64748b; font-size: 13px; }
-    @media (max-width: 600px) {
-      main { margin: 16px; padding: 18px; }
-      .examples { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Learning Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F7FA; --surface: #FFFFFF; --ink: #1B2638; --muted: #5B6576; --line: #E1E6EE;
+    --pen: #2F4BD8; --pen-soft: #E8ECFC; --hl-date: #FFE45C; --hl-time: #9BE8C8; --hl-missing: #FFB3D1;
+    --warn: #FFF6D1;
+    --body: "Atkinson Hyperlegible Next", "Segoe UI", system-ui, sans-serif;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.5 var(--body); color: var(--ink); background: var(--paper); }
+  .app { display: grid; grid-template-columns: minmax(0, 1fr) 340px; height: 100vh; }
+  main { display: flex; flex-direction: column; min-width: 0; }
+  header { padding: 18px 32px; border-bottom: 1px solid var(--line); background: var(--surface); }
+  h1, h2 { font-family: var(--display); font-weight: 600; margin: 0; }
+  h1 { font-size: 21px; } h2 { font-size: 19px; }
+  header p, .muted { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
+  #log { flex: 1; overflow-y: auto; padding: 24px 32px; }
+  .lane { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+  .me { align-self: flex-end; max-width: 78%; background: var(--ink); color: #fff; padding: 10px 15px; border-radius: 16px 16px 4px 16px; white-space: pre-wrap; }
+  .bot { display: flex; flex-direction: column; gap: 10px; }
+  .who { font-size: 13px; font-weight: 600; color: var(--muted); }
+  .text { white-space: pre-wrap; }
+  .quote { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px; line-height: 1.9; }
+  mark { color: var(--ink); font-weight: 600; padding: 1px 3px; border-radius: 3px; }
+  mark.hl-task { background: var(--pen-soft); } mark.hl-date { background: var(--hl-date); }
+  mark.hl-time { background: var(--hl-time); } mark.hl-missing { background: var(--hl-missing); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font: 500 14px var(--body); color: var(--pen); background: var(--surface); border: 1px solid var(--pen); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+  .chip:hover { background: var(--pen-soft); }
+  .schedule { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .day { display: flex; gap: 12px; align-items: center; padding: 9px 16px; border-top: 1px solid var(--line); }
+  .day:first-child { border-top: 0; }
+  .day b { width: 92px; flex: none; font-size: 13px; color: var(--muted); font-weight: 600; }
+  .blocks { display: flex; flex-wrap: wrap; gap: 6px; }
+  .block { font-size: 13px; font-weight: 500; padding: 4px 10px; border-radius: 6px; background: var(--pen-soft); }
+  .block.event { background: var(--hl-date); }
+  .block span { color: var(--muted); font-weight: 400; margin-left: 4px; }
+  .warn { background: var(--warn); border-radius: 10px; padding: 10px 14px; font-size: 14px; }
+  .warn strong { display: block; }
+  form { padding: 12px 32px 22px; }
+  .composer { max-width: 700px; margin: 0 auto; display: flex; gap: 10px; background: var(--surface); border: 1.5px solid var(--line); border-radius: 14px; padding: 7px 7px 7px 16px; }
+  .composer:focus-within { border-color: var(--pen); }
+  input { flex: 1; min-width: 0; border: 0; outline: 0; font: 15px var(--body); color: var(--ink); background: transparent; }
+  button.send { font: 600 14px var(--body); color: #fff; background: var(--pen); border: 0; border-radius: 9px; padding: 9px 18px; cursor: pointer; }
+  button:focus-visible, .chip:focus-visible { outline: 2px solid var(--pen); outline-offset: 2px; }
+  aside { background: var(--surface); border-left: 1px solid var(--line); padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 22px; }
+  aside h3 { font-size: 14px; margin: 0 0 6px; }
+  .task { display: flex; gap: 10px; padding: 8px 0; align-items: flex-start; }
+  .task input { flex: none; width: 16px; height: 16px; margin-top: 3px; accent-color: var(--pen); }
+  .task div { flex: 1; } .task strong { display: block; font-size: 15px; } .task small { color: var(--muted); font-size: 13px; }
+  .task.done strong { text-decoration: line-through; color: var(--muted); }
+  .pill { font-size: 12px; font-weight: 600; border-radius: 4px; padding: 1px 6px; }
+  .pill.high { background: var(--hl-missing); } .pill.medium { background: var(--hl-date); } .pill.low { background: var(--line); }
+  ul.list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+  ul.list li { display: flex; gap: 10px; align-items: baseline; }
+  ul.list li::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 2px; background: var(--sw); transform: translateY(1px); }
+  .empty { color: var(--muted); font-size: 14px; }
+  .reset { align-self: flex-start; font: 600 14px var(--body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; cursor: pointer; }
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    #log { min-height: 55vh; padding: 18px 16px; } header, form { padding-left: 16px; padding-right: 16px; }
+    aside { border-left: 0; border-top: 1px solid var(--line); }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Smart AI Assistant</h1>
-    <p>Your study, our support</p>
-  </header>
-
+<div class="app">
   <main>
-    <section class="welcome">
-      <h2>Welcome to your AI Assistant!</h2>
-      <p>Describe your tasks in natural language.</p>
-      <p>This is a UI placeholder. Backend integration is not implemented.</p>
-    </section>
-
-    <section class="examples" aria-label="Example requests">
-      <div class="example"><strong>Create tasks</strong><br>
-        I need to review calculus tomorrow.
+    <header>
+      <h1>Student Learning Assistant</h1>
+      <p>Tell me what you need to do. I will turn it into tasks and a study schedule you can check.</p>
+    </header>
+    <div id="log" aria-live="polite"><div class="lane" id="lane"></div></div>
+    <form id="form">
+      <div class="composer">
+        <input id="message" autocomplete="off" aria-label="Your message"
+          placeholder="For example: I have a calculus problem set due Friday and a midterm next Wednesday">
+        <button class="send" type="submit">Send</button>
       </div>
-      <div class="example"><strong>Plan schedule</strong><br>
-        Help me plan my study time next week.
-      </div>
-      <div class="example"><strong>Update task</strong><br>
-        Mark my assignment as complete.
-      </div>
-      <div class="example"><strong>Ask a question</strong><br>
-        Where is the library?
-      </div>
-    </section>
-
-    <form id="chat-form">
-      <input id="message" type="text"
-        placeholder="Type your message here..."
-        aria-label="Your message" required>
-      <button type="submit">Send</button>
     </form>
-    <p id="status" role="status">Demo only — no message is sent to a backend.</p>
   </main>
+  <aside aria-label="Plan draft">
+    <div><h2>Plan draft</h2><p class="muted" id="status">No tasks yet</p></div>
+    <section><h3>Tasks</h3><div id="tasks"><p class="empty">Tasks you mention will appear here.</p></div></section>
+    <section><h3>From you</h3><ul class="list" id="facts" style="--sw: var(--hl-date)"></ul></section>
+    <section><h3>Assumed, please check</h3><ul class="list" id="assumptions" style="--sw: var(--hl-missing)"></ul></section>
+    <button class="reset" type="button" id="reset">Start a new plan</button>
+  </aside>
+</div>
+<script>
+const lane = document.getElementById("lane");
+const input = document.getElementById("message");
+let sessionId = null;
 
-  <footer>
-    Chat page placeholder · Streamlit integration will be added later
-  </footer>
+function el(tag, cls, text) {
+  const node = document.createElement(tag);
+  if (cls) node.className = cls;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
 
-  <script>
-    document.getElementById("chat-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-      document.getElementById("status").textContent =
-        "Placeholder only. Backend integration is not available yet.";
+function highlighted(text, highlights, missing) {
+  const box = el("div", "quote");
+  const spans = highlights
+    .map(h => ({ ...h, start: text.toLowerCase().indexOf(h.text.toLowerCase()) }))
+    .filter(h => h.start >= 0)
+    .sort((a, b) => a.start - b.start);
+  let pos = 0;
+  for (const h of spans) {
+    if (h.start < pos) continue;
+    box.append(text.slice(pos, h.start));
+    box.append(el("mark", `hl-${h.kind}`, text.slice(h.start, h.start + h.text.length)));
+    pos = h.start + h.text.length;
+  }
+  box.append(text.slice(pos));
+  if (missing) { box.append(" "); box.append(el("mark", "hl-missing", missing)); }
+  return box;
+}
+
+function scheduleView(days) {
+  const box = el("div", "schedule");
+  for (const day of days) {
+    const row = el("div", "day");
+    row.append(el("b", "", day.day));
+    const blocks = el("div", "blocks");
+    for (const b of day.blocks) {
+      const block = el("span", b.event ? "block event" : "block", b.title);
+      if (!b.event) block.append(el("span", "", `${b.hours} h`));
+      blocks.append(block);
+    }
+    row.append(blocks);
+    box.append(row);
+  }
+  return box;
+}
+
+function addBot(data, userText) {
+  const msg = el("div", "bot");
+  msg.append(el("div", "who", "Assistant"));
+  if (data.highlights && data.highlights.length) {
+    msg.append(el("div", "text", "Here is what I picked up from your message:"));
+    msg.append(highlighted(userText, data.highlights, data.intent === "clarification" ? "Hours per day?" : ""));
+  }
+  msg.append(el("div", "text", data.message || data.error));
+  if (data.schedule && data.schedule.length) msg.append(scheduleView(data.schedule));
+  for (const w of data.warnings || []) {
+    const box = el("div", "warn");
+    box.append(el("strong", "", "Check this"));
+    box.append(w);
+    msg.append(box);
+  }
+  if (data.suggestions && data.suggestions.length) {
+    const chips = el("div", "chips");
+    for (const s of data.suggestions) {
+      const chip = el("button", "chip", s);
+      chip.type = "button";
+      chip.addEventListener("click", () => send(s));
+      chips.append(chip);
+    }
+    msg.append(chips);
+  }
+  lane.append(msg);
+}
+
+function readableDate(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(y, m - 1, d).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+}
+
+function renderPanel(data) {
+  const tasks = document.getElementById("tasks");
+  tasks.replaceChildren();
+  const list = data.tasks || [];
+  if (!list.length) tasks.append(el("p", "empty", "Tasks you mention will appear here."));
+  const priority = Object.fromEntries((data.priorities || []).map(p => [p.task_id, p]));
+  for (const t of list) {
+    const row = el("label", t.status === "done" ? "task done" : "task");
+    const box = el("input");
+    box.type = "checkbox";
+    box.checked = t.status === "done";
+    box.disabled = t.status === "done";
+    box.addEventListener("change", () => send(`mark ${t.title} as done`));
+    const body = el("div");
+    body.append(el("strong", "", t.title));
+    const due = t.deadline ? `Due ${readableDate(t.deadline)}${t.deadline_time ? " " + t.deadline_time : ""}` : "No deadline";
+    body.append(el("small", "", `${due}, about ${t.hours} h${t.hours_assumed ? " (estimate)" : ""} `));
+    if (priority[t.id]) body.append(el("span", `pill ${priority[t.id].priority}`, priority[t.id].priority));
+    row.append(box, body);
+    tasks.append(row);
+  }
+  for (const [id, items] of [["facts", data.facts || []], ["assumptions", data.assumptions || []]]) {
+    const ul = document.getElementById(id);
+    ul.replaceChildren(...items.map(text => el("li", "", text)));
+  }
+  const open = list.filter(t => t.status !== "done").length;
+  document.getElementById("status").textContent =
+    list.length ? `${open} open task${open === 1 ? "" : "s"}. Not saved anywhere yet.` : "No tasks yet";
+}
+
+async function send(text) {
+  text = text.trim();
+  if (!text) return;
+  lane.append(el("div", "me", text));
+  input.value = "";
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text, session_id: sessionId }),
     });
-  </script>
+    const data = await res.json();
+    sessionId = data.session_id || sessionId;
+    addBot(data, text);
+    if (res.ok) renderPanel(data);
+  } catch (err) {
+    addBot({ message: "The assistant server is not reachable. Start it with: python -m assistant serve" }, text);
+  }
+  document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight;
+}
+
+document.getElementById("form").addEventListener("submit", e => { e.preventDefault(); send(input.value); });
+document.getElementById("reset").addEventListener("click", () => send("reset"));
+addBot({
+  message: "Hi! Tell me about your tasks and deadlines, or ask where a campus office is.",
+  suggestions: ["I have a calculus problem set due Friday and a midterm next Wednesday", "Where is the library?", "help"],
+}, "");
+</script>
 </body>
 </html>

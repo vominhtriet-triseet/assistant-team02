@@ -32,19 +32,25 @@ check("running inside a virtual environment", in_venv, "activate .venv first (se
 check("pytest installed", importlib.util.find_spec("pytest") is not None, "pip install -r requirements.txt")
 check("git available", shutil.which("git") is not None, "install Git")
 check("inside a git repository", (root / ".git").exists(), "clone the repo, or run git init")
-check(".gitignore present", (root / ".gitignore").exists(), "Lab 1 step 5")
+check(".gitignore present", (root / ".gitignore").exists(), "restore .gitignore from Git")
 readme = (root / "README.md").read_text(encoding="utf-8") if (root / "README.md").exists() else ""
-check("README has no TODO left", "TODO" not in readme, "Lab 1 step 5: write the setup instructions")
+check("README has no TODO left", "TODO" not in readme, "finish the setup instructions in README.md")
 if shutil.which("git") and (root / ".git").exists():
     email = subprocess.run(["git", "config", "user.email"], capture_output=True, text=True, cwd=root).stdout.strip()
     check(f"git user.email set ({email or 'missing'})", bool(email), "git config --global user.email ...")
-sys.path.insert(0, str(root / "src"))
 try:
-    from assistant.rules import reply
+    import assistant
 
-    check("starter app imports and answers", "Hello" in reply("hi"))
+    installed = Path(assistant.__file__).resolve().is_relative_to(root / "src")
+    check("assistant package installed from this repository", installed, "python -m pip install -e .")
+    from assistant.service import process_request
+
+    check("assistant answers an office question", "B.201" in process_request("where is the library?")["message"])
+    check("assistant reads a planning request", process_request("essay due Friday")["tasks"] != [])
 except Exception as exc:  # noqa: BLE001 - report any import problem
-    check("starter app imports and answers", False, repr(exc))
+    check("assistant package installed from this repository", False, f"python -m pip install -e .  ({exc!r})")
+check("data/offices.csv present", (root / "data" / "offices.csv").exists(), "restore data/offices.csv from Git")
+check("chat page present", (root / "ui" / "index.html").exists(), "restore ui/index.html from Git")
 print()
 print("All good!" if problems == 0 else f"{problems} problem(s) found.")
 sys.exit(1 if problems else 0)

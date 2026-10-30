@@ -1,0 +1,57 @@
+\chapter{Introduction}
+
+\section{Problem statement}
+
+University students manage assignments with deadlines, long-term study goals, course materials, and review sessions at the same time. Details about this work are often spread across notes, files, calendars, and messages. When a student starts with an informal request, they still need to decide what the tasks are, when each task is due, what to do first, and which materials are relevant. That effort grows when time is limited or plans change.
+
+Planning, note keeping, and studying also tend to happen in separate places. A student may save useful notes and fail to find them when needed. After a study session, they may not turn what they learned into a clear next step. Research on self-regulated learning describes goal setting, progress monitoring, and strategy adjustment as parts of the learning process \cite{zimmerman2002}. This project proposes a personal assistant that connects three related activities: planning and task execution, knowledge management, and study support.
+
+The project asks how a student's requests, learning materials, and progress can be represented as clear structures that the system can process and link. Those structures should help the student choose a next action while making missing information and unconfirmed assumptions visible. The assistant provides suggestions for the student to review.
+
+\section{Motivation}
+
+The project gives the team a practical way to apply computational thinking to a familiar problem. A broad study goal can be broken into smaller tasks. Repeated workflows can be identified, such as setting a goal, taking action, checking progress, and adjusting the plan. The system can represent shared concepts such as goals, tasks, materials, and study states, then apply explicit rules to them. Following Wing, the team treats computational thinking as a general way to organize and solve problems \cite{wing2006}.
+
+The three proposed features support different parts of a student's work. Planning turns an intention into actionable tasks. Knowledge management keeps study materials organized and retrievable. Study support gives the student a way to practise, receive feedback, and decide what to review next. A result from a study session can become a task, and saved material can be used in a later session. This scope reflects the team's analysis of decomposition, pattern recognition, and abstraction.
+
+\section{Project objectives}
+
+\subsection*{Overall objective}
+
+Design and build a prototype that helps students organize academic work, manage learning materials, and carry out review activities through clear data structures, rules, and workflows.
+
+\subsection*{Specific objectives}
+\begin{enumerate}
+  \item Represent study requests as goals and tasks with deadlines, estimated durations, priorities, statuses, and relevant constraints. Use this information to propose a schedule and track progress.
+  \item Organize and retrieve notes, documents, and links by topic, and connect them to a goal or task when the user provides enough information.
+  \item Define a study workflow that uses an explanation or selected material, practice questions, feedback, and a suggested review step.
+  \item Define a shared context that lets the three features exchange information while keeping their responsibilities distinct.
+  \item Evaluate the prototype with synthetic test cases, including missing details, conflicting requests, searches with no results, and schedules that cannot meet the stated constraints.
+\end{enumerate}
+
+\section{Target users}
+
+The primary users are university students who need to coordinate coursework, study materials, and review activities. They can enter a broad goal or an informal request, answer follow-up questions, inspect and edit the suggested result, and choose what to do next. Instructors and team members may evaluate the prototype, but they are not its primary users.
+
+\section{Project scope}
+
+\subsection*{Proposed features}
+
+The proposed product has three main features:
+\begin{enumerate}
+  \item \textbf{Planning and task execution.} Accept a goal or request, break it into tasks, record deadlines, durations, priorities, dependencies, and availability when provided, then propose a schedule. The system identifies missing details and conflicts, and lets the student revise the plan and track task status.
+  \item \textbf{Knowledge management.} Save user-provided notes, documents, and links; organize them by topic or tag; and search for material related to a task or goal. Responses based on saved content must use the available source information. The system must not invent citations or present unverified claims as facts.
+  \item \textbf{Study support.} Support a study session around a topic or supplied material with an explanation, practice questions, feedback, and a suggestion for what to review. The student can add the suggested review activity to the plan.
+\end{enumerate}
+
+The team will focus on workflows that can be demonstrated and tested within the course. Advanced integrations are outside the initial scope.
+
+\subsection*{Out of scope}
+
+The project does not include synchronization with a real personal calendar, notifications through external services, storage of sensitive personal profiles, professional advice, guaranteed optimal schedules, or a complete adaptive learning platform. The prototype does not depend on a large language model or a paid service. Any automatically generated content added later must be checked and presented as a suggestion. Development and demonstration will use synthetic data instead of students' private calendars, emails, or task lists.
+
+\section{Related approaches}
+
+Calendar and task tools help users record work and due dates. Note-taking tools organize and search stored material. Learning tools provide course content or practice activities. This project studies how those activities could share a learning context, linking goals and tasks with materials and study sessions. The prototype will be evaluated to see whether those links help students identify a clear next action.
+
+The project also draws on research about learning techniques. Dunlosky and colleagues review retrieval practice and distributed practice as techniques with research support \cite{dunlosky2013}. The proposed study workflow uses questions, feedback, and a next review step. The team will not claim that the prototype improves learning outcomes without an evaluation that measures them.

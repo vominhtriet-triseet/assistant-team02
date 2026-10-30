@@ -1,0 +1,35 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage{hcmus-csc10014-template}
+\usepackage{mathptmx}
+\renewcommand{\baselinestretch}{1.15}
+\setlength{\parindent}{1.2cm}
+\setlength{\parskip}{3pt}
+
+\newcommand{\coursename}{Computational Thinking (CSC10014)}
+\newcommand{\reporttitle}{Report}
+\newcommand{\topicname}{Virtual Assistant}
+\newcommand{\reportname}{Student Learning Assistant}
+\newcommand{\studentname}{25127246 Võ Minh Triết \\ 25127510 Nguyễn Phước Thọ \\ 25127260 Nguyễn Dương An \\ 25127087 Lư Gia Linh \\ 25127201 Huỳnh Anh Khoa \\ 24127449 Nguyễn Anh Minh}
+\newcommand{\teachername}{Châu Thành Đức \\ Đỗ Đức Hào \\ Trần Hoàng Quân}
+
+\begin{document}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\listfigurename}{List of Figures}
+\renewcommand{\listtablename}{List of Tables}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+\renewcommand{\chaptername}{Chapter}
+\renewcommand{\bibname}{References}
+\setcounter{tocdepth}{1}
+\hypersetup{linkcolor=black,citecolor=black,urlcolor=black}
+\input{content/title}
+\pagenumbering{gobble}
+\tableofcontents
+\listoffigures
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\input{content/introduction}
+\input{content/system-overview}
+\input{ref/ref}
+\end{document}

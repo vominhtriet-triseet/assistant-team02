@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Report | Student Learning Assistant | Team 02</title>
+<style>
+@page { size: A4; margin: 24mm 20mm 20mm 25mm; @bottom-center { content: counter(page); font-family: "Times New Roman", Times, serif; font-size: 11pt; } }
+@page front { counter-increment: page 0; @bottom-center { content: none; } }
+* { box-sizing: border-box; }
+body { font-family: "Times New Roman", Times, serif; font-size: 11pt; line-height: 1.22; color: #151515; }
+h1, h2, h3 { font-weight: 700; page-break-after: avoid; }
+h1 { font-size: 20pt; margin: 0 0 18pt; }
+h2 { font-size: 14pt; margin: 18pt 0 8pt; }
+h3 { font-size: 12pt; margin: 12pt 0 5pt; }
+p { text-align: justify; text-indent: 1.1cm; margin: 0 0 6pt; }
+.noindent { text-indent: 0; }
+.cover { page: front; height: 240mm; border: 1.5pt solid #333; padding: 18mm 12mm; text-align: center; break-after: page; position: relative; }
+.cover p { text-align: center; text-indent: 0; }
+.school { text-transform: uppercase; letter-spacing: .5pt; font-size: 13pt; line-height: 1.55; }
+.logo { display: block; width: 28mm; height: 28mm; object-fit: contain; margin: 3mm auto 4mm; }
+.cover-title { margin-top: 10mm; font-size: 17pt; font-weight: bold; }
+.topic-label { font-weight: normal; }
+.topic { line-height: 1.35; font-size: 22pt; font-weight: bold; margin: 7mm auto 11mm; max-width: 150mm; }
+.rule { border-top: 1pt solid #444; width: 85%; margin: auto; }
+.course { margin-top: 10mm; }
+.cover-columns { display: flex; justify-content: space-between; gap: 8mm; text-align: left; margin: 10mm 8mm 0; line-height: 1.55; font-size: 11pt; }
+.cover-columns > div:first-child { width: 58%; }
+.cover-columns > div:last-child { width: 38%; text-align: right; }
+.place { position: absolute; bottom: 10mm; width: calc(100% - 24mm); left: 12mm; }
+.toc { page: front; break-after: page; }
+.toc li span { display: flex; align-items: baseline; }
+.toc li span::after { content: ""; order: 1; flex: 1; border-bottom: 1pt dotted #555; margin: 0 4pt; }
+.toc li span i { order: 2; font-style: normal; }
+.toc a { color: inherit; text-decoration: none; display: block; }
+.toc ul { list-style: none; padding-left: 0; line-height: 1.8; }
+.toc ul ul { padding-left: 18pt; line-height: 1.5; }
+.chapter-start { break-before: page; }
+li { margin: 0 0 4pt; text-align: justify; }
+ol, ul { padding-left: 24pt; }
+table { border-collapse: collapse; width: 100%; margin: 8pt 0 12pt; font-size: 9.5pt; }
+thead { display: table-header-group; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+th, td { border: .7pt solid #555; padding: 5pt 6pt; vertical-align: top; text-align: left; }
+th { background: #edf1f4; }
+.small { font-size: 9.5pt; }
+.figure { page-break-inside: avoid; break-inside: avoid; margin: 10pt 0 4pt; }
+.figure img { display: block; width: 100%; height: auto; border: .5pt solid #ccc; }
+.refs li { overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<section class="cover">
+  <p class="school">Vietnam National University, Ho Chi Minh City<br>University of Science<br>Faculty of Information Technology</p>
+  <img class="logo" src="img/hcmus-logo.png" alt="University of Science logo">
+  <div class="cover-title">Report</div>
+  <div class="rule" style="margin-top:8mm"></div>
+  <div class="topic"><span class="topic-label">Topic:</span> Virtual Assistant<br><span class="topic-label">Project:</span> Student Learning Assistant</div>
+  <div class="rule"></div>
+  <p class="course"><b>Course: Computational Thinking (CSC10014)</b></p>
+  <div class="cover-columns">
+    <div><b>Team members</b><br>
+      25127246 Võ Minh Triết<br>
+      25127510 Nguyễn Phước Thọ<br>
+      25127260 Nguyễn Dương An<br>
+      25127087 Lư Gia Linh<br>
+      25127201 Huỳnh Anh Khoa<br>
+      24127449 Nguyễn Anh Minh
+    </div>
+    <div><b>Instructors</b><br>
+      Châu Thành Đức<br>
+      Đỗ Đức Hào<br>
+      Trần Hoàng Quân
+    </div>
+  </div>
+  <p class="place">Ho Chi Minh City, October 2026</p>
+</section>
+<section class="toc">
+<h1 style="text-align:center">Contents</h1>
+<ul>
+<li><a href="#sec-chapter-1-introduction"><span><b>Chapter 1. Introduction</b><i>1</i></span></a>
+  <ul><li><a href="#sec-1-1-problem-statement"><span>1.1. Problem statement<i>1</i></span></a></li><li><a href="#sec-1-2-motivation"><span>1.2. Motivation<i>1</i></span></a></li><li><a href="#sec-1-3-project-objectives"><span>1.3. Project objectives<i>1</i></span></a></li><li><a href="#sec-1-4-target-users"><span>1.4. Target users<i>2</i></span></a></li><li><a href="#sec-1-5-project-scope"><span>1.5. Project scope<i>2</i></span></a></li><li><a href="#sec-1-6-related-approaches"><span>1.6. Related approaches<i>2</i></span></a></li></ul>
+</li>
+<li><a href="#sec-chapter-2-system-requirements-analysis"><span><b>Chapter 2. System requirements analysis</b><i>3</i></span></a>
+  <ul><li><a href="#sec-2-1-overview-and-assumptions"><span>2.1. Overview and assumptions<i>3</i></span></a></li><li><a href="#sec-2-2-functional-requirements"><span>2.2. Functional requirements<i>3</i></span></a></li><li><a href="#sec-2-3-non-functional-requirements"><span>2.3. Non-functional requirements<i>4</i></span></a></li><li><a href="#sec-2-4-use-case-model"><span>2.4. Use case model<i>4</i></span></a></li><li><a href="#sec-2-5-use-case-specification-plan-study-tasks"><span>2.5. Use case specification: plan study tasks<i>5</i></span></a></li><li><a href="#sec-2-6-conceptual-data-model"><span>2.6. Conceptual data model<i>6</i></span></a></li><li><a href="#sec-2-7-computational-thinking-in-the-requirements"><span>2.7. Computational thinking in the requirements<i>8</i></span></a></li></ul>
+</li>
+<li><a href="#sec-references"><span><b>References</b><i>10</i></span></a></li>
+</ul>
+</section>
+
+<section class="chapter">
+<h1 id="sec-chapter-1-introduction">Chapter 1. Introduction</h1>
+<h2 id="sec-1-1-problem-statement">1.1. Problem statement</h2>
+<p>University students manage assignments with deadlines, long-term study goals, course materials, and review sessions at the same time. Details about this work are often spread across notes, files, calendars, and messages. When a student starts with an informal request, they still need to decide what the tasks are, when each task is due, what to do first, and which materials are relevant. That effort grows when time is limited or plans change.</p>
+<p>Planning, note keeping, and studying also tend to happen in separate places. A student may save useful notes and fail to find them when needed. After a study session, they may not turn what they learned into a clear next step. Research on self-regulated learning describes goal setting, progress monitoring, and strategy adjustment as parts of the learning process [2]. This project proposes a personal assistant that connects planning and task execution, knowledge management, and study support.</p>
+<p>The project asks how a student's requests, learning materials, and progress can be represented as clear structures that the system can process and link. Those structures should help the student choose a next action while making missing information and unconfirmed assumptions visible. The assistant provides suggestions for the student to review.</p>
+<h2 id="sec-1-2-motivation">1.2. Motivation</h2>
+<p>The project gives the team a practical way to apply computational thinking to a familiar problem. A broad study goal can be broken into smaller tasks. Repeated workflows can be identified, such as setting a goal, taking action, checking progress, and adjusting the plan. The system can represent shared concepts such as goals, tasks, materials, and study states, then apply explicit rules to them. Following Wing, the team treats computational thinking as a general way to organize and solve problems [1].</p>
+<p>The three proposed features support different parts of a student's work. Planning turns an intention into actionable tasks. Knowledge management keeps study materials organized and retrievable. Study support gives the student a way to practise, receive feedback, and decide what to review next. A result from a study session can become a task, and saved material can be used in a later session. This scope reflects the team's analysis of decomposition, pattern recognition, and abstraction.</p>
+<h2 id="sec-1-3-project-objectives">1.3. Project objectives</h2>
+<h3>Overall objective</h3>
+<p>Design and build a prototype that helps students organize academic work, manage learning materials, and carry out review activities through clear data structures, rules, and workflows.</p>
+<h3>Specific objectives</h3>
+<ol>
+<li>Represent study requests as goals and tasks with deadlines, estimated durations, priorities, statuses, and relevant constraints. Use this information to propose a schedule and track progress.</li>
+<li>Organize and retrieve notes, documents, and links by topic, and connect them to a goal or task when the user provides enough information.</li>
+<li>Define a study workflow that uses an explanation or selected material, practice questions, feedback, and a suggested review step.</li>
+<li>Define a shared context that lets the three features exchange information while keeping their responsibilities distinct.</li>
+<li>Evaluate the prototype with synthetic test cases, including missing details, conflicting requests, searches with no results, and schedules that cannot meet the stated constraints.</li>
+</ol>
+<h2 id="sec-1-4-target-users">1.4. Target users</h2>
+<p>The primary users are university students who need to coordinate coursework, study materials, and review activities. They can enter a broad goal or an informal request, answer follow-up questions, inspect and edit the suggested result, and choose what to do next. Instructors and team members may evaluate the prototype, but they are not its primary users.</p>
+<h2 id="sec-1-5-project-scope">1.5. Project scope</h2>
+<h3>Proposed features</h3>
+<ol>
+<li><b>Planning and task execution.</b> Accept a goal or request, break it into tasks, record deadlines, durations, priorities, dependencies, and availability when provided, then propose a schedule. The system identifies missing details and conflicts, and lets the student revise the plan and track task status.</li>
+<li><b>Knowledge management.</b> Save user-provided notes, documents, and links; organize them by topic or tag; and search for material related to a task or goal. Responses based on saved content must use the available source information. The system must not invent citations or present unverified claims as facts.</li>
+<li><b>Study support.</b> Support a study session around a topic or supplied material with an explanation, practice questions, feedback, and a suggestion for what to review. The student can add the suggested review activity to the plan.</li>
+</ol>
+<p>The team will focus on workflows that can be demonstrated and tested within the course. Advanced integrations are outside the initial scope.</p>
+<h3>Out of scope</h3>
+<p>The project does not include synchronization with a real personal calendar, notifications through external services, storage of sensitive personal profiles, professional advice, guaranteed optimal schedules, or a complete adaptive learning platform. The prototype does not depend on a large language model or a paid service. Any automatically generated content added later must be checked and presented as a suggestion. Development and demonstration will use synthetic data instead of students' private calendars, emails, or task lists.</p>
+<h2 id="sec-1-6-related-approaches">1.6. Related approaches</h2>
+<p>Calendar and task tools help users record work and due dates. Note-taking tools organize and search stored material. Learning tools provide course content or practice activities. This project studies how those activities could share a learning context, linking goals and tasks with materials and study sessions. The prototype will be evaluated to see whether those links help students identify a clear next action.</p>
+<p>The project also draws on research about learning techniques. Dunlosky and colleagues review retrieval practice and distributed practice as techniques with research support [3]. The proposed study workflow uses questions, feedback, and a next review step. The team will not claim that the prototype improves learning outcomes without an evaluation that measures them.</p>
+</section>
+
+<section class="chapter chapter-start">
+<h1 id="sec-chapter-2-system-requirements-analysis">Chapter 2. System requirements analysis</h1>
+<h2 id="sec-2-1-overview-and-assumptions">2.1. Overview and assumptions</h2>
+<p>The proposed system lets students use three features within a shared learning context. Students provide information, review results, answer clarification questions, edit suggestions, and decide whether to use them. The system processes user-provided or synthetic data. It does not access personal calendars, email, or accounts.</p>
+<p>This chapter specifies the intended behaviour of the product. Inputs may be incomplete or inconsistent. In those cases, the system should ask for clarification, state its assumptions, or explain what it cannot process. It should not silently fill in missing details.</p>
+<h2 id="sec-2-2-functional-requirements">2.2. Functional requirements</h2>
+<table><thead><tr><th style="width:13%">ID</th><th>Proposed requirement</th></tr></thead><tbody>
+<tr><td>FR-01</td><td>The system lets students enter study goals and tasks, deadlines, estimated durations, priorities, dependencies, and available time through a form or a natural-language request.</td></tr>
+<tr><td>FR-02</td><td>The system breaks a goal into trackable tasks. Each task has at least an identifier, title, and status; it may also have a deadline, duration, priority, and dependencies. User-provided facts are distinguished from system suggestions.</td></tr>
+<tr><td>FR-03</td><td>The system detects required information that is missing or inconsistent and asks a focused clarification question. If the available details are still insufficient, it explains the limitation instead of creating a schedule that appears complete.</td></tr>
+<tr><td>FR-04</td><td>The system proposes task priorities and a schedule based on deadlines, user-provided priorities or preferences, dependencies, and available time. The student reviews the result as a proposal, and the system does not guarantee an optimal schedule.</td></tr>
+<tr><td>FR-05</td><td>The system identifies conflicts, insufficient time, and unscheduled tasks. It explains the relevant constraints and lets the student revise the details and request an updated plan.</td></tr>
+<tr><td>FR-06</td><td>The system lets students review and update task status. When a status, deadline, or availability changes, they can request an updated plan.</td></tr>
+<tr><td>FR-07</td><td>The system lets students save notes, links, and text they provide, and organize those items by title, topic, or tag.</td></tr>
+<tr><td>FR-08</td><td>The system searches saved items by keyword or topic, shows matching content with its supplied source, and lets students link an item to a related goal or task. It does not invent a source when none is available.</td></tr>
+<tr><td>FR-09</td><td>The system lets students start a study session from a topic or saved item, review an explanation or summary based on the available input, answer practice questions, and receive feedback.</td></tr>
+<tr><td>FR-10</td><td>The system records basic study-session information, including the topic, progress, and material to review. It suggests a follow-up activity that the student can add to the plan as a task.</td></tr>
+<tr><td>FR-11</td><td>The system uses a shared context to connect goals, tasks, knowledge items, and study sessions. Within the prototype, students can review, edit, or delete information they entered.</td></tr>
+</tbody></table>
+<h3>Why these three features</h3>
+<p>Planning turns an intention into work with an order and a time. Deadlines, durations, and availability help make the resulting plan useful for decisions. Knowledge management makes saved material easier to find and connect to current work. Study support gives students a way to practise, check their understanding, and choose what to review. Research reviews identify retrieval practice as a learning technique with supporting evidence [3]. Each feature has its own input, process, and output, while the shared context lets them pass relevant information to one another.</p>
+<h2 id="sec-2-3-non-functional-requirements">2.3. Non-functional requirements</h2>
+<ol>
+<li><b>Correctness and transparency:</b> show the supplied facts, missing details, assumptions, and warnings. Label schedules as proposals. Do not present an inferred priority as a confirmed user preference.</li>
+<li><b>Usability:</b> make the main results easy to scan. Ask only for information needed to continue the current workflow. Let students edit details without entering the entire request again.</li>
+<li><b>Privacy:</b> use synthetic data in examples and tests. Do not store credentials, personal calendars, email, or sensitive identifying information in the repository. Avoid logging user content unless processing requires it.</li>
+<li><b>Reliability:</b> validate input and provide actionable messages for invalid data or retrieval errors. An error should not discard content already entered in the current session.</li>
+<li><b>Modularity and testability:</b> define clear data boundaries between the three features. Test task breakdown, scheduling, retrieval, and study feedback independently with input and expected-output examples.</li>
+<li><b>Controlled extensibility:</b> allow for persistent storage or a language service to be added later, while keeping the course prototype independent of external services and paid models.</li>
+</ol>
+<h2 id="sec-2-4-use-case-model">2.4. Use case model</h2>
+<p>The primary actor is the <b>Student</b>. Figure 2.1 shows the use cases the student interacts with, grouped by the three features. Optional steps, such as answering a clarification question or resolving a schedule conflict, appear as «extend» relations.</p>
+<div class="figure"><img src="img/usecase-diagram.png" alt="Detailed use case diagram"></div>
+<p class="noindent small caption"><b>Figure 2.1.</b> Use case diagram, grouped by feature.</p>
+<h2 id="sec-2-5-use-case-specification-plan-study-tasks">2.5. Use case specification: plan study tasks</h2>
+<table><tbody>
+<tr><th style="width:24%">ID and name</th><td>UC-01, Plan and track study tasks</td></tr>
+<tr><th>Primary actor</th><td>Student</td></tr>
+<tr><th>Goal</th><td>Turn a goal or task list into structured tasks and a schedule proposal that the student can review and edit.</td></tr>
+<tr><th>Preconditions</th><td>The student has a goal or at least one task to plan, and the system can accept input. A personal calendar connection is not required.</td></tr>
+<tr><th>Trigger</th><td>The student opens the planning feature and enters a goal, tasks, or a request to change the current plan.</td></tr>
+<tr><th>Postconditions</th><td>The system displays structured tasks, a proposed schedule when sufficient information is available, assumptions or warnings, and task statuses. The student can accept, edit, or recalculate the proposal.</td></tr>
+</tbody></table>
+<h3>Main flow</h3>
+<ol>
+<li>The student enters a goal or describes the work. They may include deadlines, durations, priorities, dependencies, and available time.</li>
+<li>The system extracts identifiable facts, breaks the goal into tasks, and marks details that are missing.</li>
+<li>The system presents a draft task list for review and distinguishes extracted facts from suggestions.</li>
+<li>If the required information is available, the system orders tasks by dependencies and priority, then checks durations against availability and deadlines.</li>
+<li>The system produces a proposed schedule, lists conflicts or unscheduled tasks, and explains the relevant constraints.</li>
+<li>The student reviews the result, edits details, or updates task status.</li>
+<li>When something changes, the system updates the plan and presents the revised proposal for the student to review.</li>
+</ol>
+<h3>Alternative and exception flows</h3>
+<ol>
+<li><b>A1, Missing information:</b> If a detail needed for scheduling is missing, such as duration or availability, the system asks a focused question. After the student responds, the flow resumes at step 2. If they skip the question, the system can keep the task list and explain why it cannot schedule the work yet.</li>
+<li><b>A2, Conflict or infeasible schedule:</b> The system identifies the conflict and lists work it could not schedule. It asks the student to revise the constraints instead of presenting the result as feasible.</li>
+<li><b>A3, Student edits the result:</b> If the student changes a priority, deadline, or status, the system preserves unchanged facts, updates the affected details, and recalculates the proposal.</li>
+<li><b>A4, Unsupported request:</b> The system explains which part it does not support and does not invent data to complete the request.</li>
+</ol>
+<p>Figure 2.2 shows a proposed chat screen for this use case. The assistant highlights the facts it extracted from the student's request and asks for the missing study hours (A1). The draft schedule then reports that the midterm review does not fit before the deadline (A2). The plan panel separates facts the student supplied from estimates the system assumed.</p>
+<div class="figure"><img src="img/chat-ui.png" alt="Chat screen design"></div>
+<p class="noindent small caption"><b>Figure 2.2.</b> Proposed chat screen for planning study tasks.</p>
+<h2 id="sec-2-6-conceptual-data-model">2.6. Conceptual data model</h2>
+<p>The team proposes an <i>AssistantContext</i> for each learning session or context. It references the entities below so the three features can share information while keeping separate responsibilities. The context does not decide what a student should value or prioritize. Each entity below maps to one table in the proposed database.</p>
+<table><thead><tr><th>Entity</th><th>Proposed core attributes</th><th>Purpose and relationships</th></tr></thead><tbody>
+<tr><td>AssistantContext</td><td>context_id, user_goal, next_actions, created_at</td><td>Shared context linking goals with tasks, knowledge items, and study sessions.</td></tr>
+<tr><td>Task</td><td>task_id, context_id, title, deadline?, duration_min?, priority?, status, source</td><td>A unit of work. The source field records whether the student supplied it or the system suggested it.</td></tr>
+<tr><td>ScheduleBlock</td><td>block_id, task_id, start_at, end_at, status, assumption?</td><td>A proposed time slot for a task. Some tasks may remain unscheduled.</td></tr>
+<tr><td>TaskDependency</td><td>task_id, depends_on_id</td><td>Records that one task cannot start before another task is finished.</td></tr>
+<tr><td>KnowledgeItem</td><td>item_id, context_id, title, content_ref, source_url?, tags, created_at</td><td>User-provided material linked to a goal or task.</td></tr>
+<tr><td>TaskKnowledge</td><td>task_id, item_id</td><td>Links a task to the materials it uses.</td></tr>
+<tr><td>StudySession</td><td>session_id, context_id, topic, progress, review_notes, started_at</td><td>A learning session whose result can create a next action or review task.</td></tr>
+<tr><td>StudySessionItem</td><td>session_id, item_id</td><td>Links a study session to the materials it covers.</td></tr>
+</tbody></table>
+<p>A question mark marks an attribute that may be unknown. During implementation, the team will need to decide how to represent dates and time zones, validate input, and handle edits or deletions to linked records. The proposal does not select a database technology. Figure 2.3 shows these tables with their primary and foreign keys. Task dependencies and the links between materials and tasks or study sessions are many-to-many relationships, so each is stored in its own linking table: TaskDependency, TaskKnowledge, and StudySessionItem.</p>
+<div class="figure"><img src="img/database-diagram.png" alt="Database diagram"></div>
+<p class="noindent small caption"><b>Figure 2.3.</b> Proposed database diagram.</p>
+<h2 id="sec-2-7-computational-thinking-in-the-requirements">2.7. Computational thinking in the requirements</h2>
+<ul>
+<li><b>Decomposition:</b> Divide the problem into three features with separate inputs, processes, and outputs. Break planning into fact extraction, clarification, task management, constraint checking, scheduling, and progress tracking.</li>
+<li><b>Pattern recognition:</b> Reuse workflows such as goal, action, progress check, and revision; capture, organize, retrieve, and connect; explain, practise, give feedback, and review.</li>
+<li><b>Abstraction:</b> Keep details that affect study work, such as goals, tasks, deadlines, materials, and status. Ignore presentation details such as interface colour or device type when they do not affect processing. Use a shared context to connect entities without merging feature responsibilities.</li>
+<li><b>Algorithm design:</b> Check for missing details before scheduling, respect stated dependencies and constraints, and report conflicts or unscheduled tasks. The team will refine and test the priority and scheduling rules with synthetic data.</li>
+</ul>
+<h3>Proposed scheduling workflow</h3>
+<ol>
+<li>Extract tasks and facts supplied by the student.</li>
+<li>Mark required details that are missing or inconsistent. Ask the student to clarify and pause scheduling if needed.</li>
+<li>Order tasks by dependency. Within each dependency level, use confirmed deadlines and priorities.</li>
+<li>For each task, find an available time slot before its deadline that respects dependencies.</li>
+<li>Add a suitable slot to the proposed schedule. If no slot fits, mark the task as unscheduled and record the conflicting constraint.</li>
+<li>Present the schedule, assumptions, warnings, and unscheduled tasks for review.</li>
+</ol>
+<p>Evaluation should check that a proposed schedule respects the supplied deadlines, durations, availability, and dependencies. Tests should also cover missing details and cases with no feasible schedule.</p>
+</section>
+
+<section class="chapter refs chapter-start">
+<h1 id="sec-references">References</h1>
+<ol>
+<li>J. M. Wing, "Computational Thinking," <i>Communications of the ACM</i>, vol. 49, no. 3, pp. 33–35, 2006.</li>
+<li>B. J. Zimmerman, "Becoming a Self-Regulated Learner: An Overview," <i>Theory Into Practice</i>, vol. 41, no. 2, pp. 64–70, 2002.</li>
+<li>J. Dunlosky, K. A. Rawson, E. J. Marsh, M. J. Nathan, and D. T. Willingham, "Improving Students' Learning With Effective Learning Techniques: Promising Directions From Cognitive and Educational Psychology," <i>Psychological Science in the Public Interest</i>, vol. 14, no. 1, pp. 4–58, 2013.</li>
+</ol>
+</section>
+</body>
+</html>

@@ -1,24 +1,14 @@
-# Data Directory - Personal Schedule Assistant
+# Data
 
-This directory contains all the data assets (raw datasets, configurations, and training templates) used to train, configure, and operate the Personal Schedule Assistant.
+All data in this folder is synthetic or taken from public campus information. Do not
+add real student calendars, task lists, emails, or contact details.
 
-## Data Inventory
+| File | Used by | Contents |
+|---|---|---|
+| `offices.csv` | `src/assistant/offices.py` | Office name, room, and opening hours. Columns: `name,room,hours`. Use `Not listed publicly` when the room or hours are not published. |
+| `sample_tasks.csv` | Reference data for demos and future import | Example tasks with `task_id,title,duration_minutes,deadline,importance,status`. Deadlines use ISO 8601 local time. |
 
-The table below outlines the source, ownership, and update frequency for each data file utilized in this repository:
+Tasks and study time that students type into the assistant are kept in memory for the
+current session only and are not written to this folder.
 
-| File Name | Source | Owner | Update Frequency | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| `user_profiles.json` | User registration & application settings | **Product Team / Backend** | Upon user profile modification | Stores user preferences, time zones, standard working hours, and buffer time configurations. |
-| `calendar_events.csv` | Google Calendar & Outlook Calendar APIs | **Integration Team** | Real-time synchronization | Holds active events, meetings, and blocked slots to prevent scheduling conflicts. |
-| `task_backlog.csv` | User input & to-do list applications | **Product Lead** | Dynamic / Weekly | A list of tasks, deadlines, and priority levels that need to be scheduled into the calendar. |
-| `intent_training.json` | Synthesized dataset & historical chat logs | **AI / NLP Team** | Monthly (Upon model retraining) | Training data for natural language understanding (NLU) to identify scheduling intents (e.g., set, reschedule, cancel). |
-| `travel_time_matrix.json`| Google Maps Distance Matrix API | **Data Engineer** | Weekly | Cached travel time data between frequent user locations to calculate commute buffers. |
-| `system_prompts.md` | Internal AI behavioral engineering | **Product Lead** | As required by system updates | Defines the persona, tone of voice, and boundary constraints for the assistant (e.g., no meetings after 8 PM). |
-
----
-
-## Data Governance & Standards
-
-* **Privacy & Security:** Files containing Personally Identifiable Information (PII), such as `user_profiles.json` and `calendar_events.csv`, must be anonymized. Never commit production or real user data to public branches.
-* **Time Standardization:** All timestamps across these files must strictly follow the **ISO 8601** format (`YYYY-MM-DDTHH:mm:ssZ`) to ensure accurate scheduling logic and timezone conversions.
-
+To read data from another folder, set `ASSISTANT_DATA_DIR` to that path.

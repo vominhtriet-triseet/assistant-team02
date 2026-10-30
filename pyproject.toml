@@ -4,9 +4,16 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "assistant"
-version = "0.1.0"
-description = "CSC10014 Personal Productivity Assistant — Team 02"
+version = "0.2.0"
+description = "Student Learning Assistant: a planning-first study assistant (CSC10014, Team 02)"
 requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+assistant = "assistant.__main__:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
