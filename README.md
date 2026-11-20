@@ -120,7 +120,7 @@ data/                 synthetic data used by the assistant
 eval/                 benchmark cases and runner
 tests/                unit, service, and server tests
 docs/                 design documents
-report/               project report (LaTeX source and figures)
+report/               project report, kept locally (ignored by Git)
 ```
 
 The response format of `process_request()` is described in
