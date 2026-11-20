@@ -104,3 +104,11 @@ def test_rules_are_used_before_the_language_model(session, today):
     provider = FakeProvider(error="should not be called")
     response = process_request("essay due Friday", session, today=today, provider=provider)
     assert response["tasks"][0]["title"] == "Essay" and response["warnings"] == []
+
+
+def test_assumptions_survive_an_office_question(session, today):
+    process_request("essay due Friday", session, today=today)
+    plan = process_request("2 hours every day", session, today=today)
+    office = process_request("Where is the library?", session, today=today)
+    assert office["intent"] == "office" and office["assumptions"] == plan["assumptions"] != []
+    assert process_request("reset", session, today=today)["assumptions"] == []

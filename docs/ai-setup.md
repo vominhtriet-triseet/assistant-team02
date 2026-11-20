@@ -8,6 +8,17 @@ deadline, exam, homework, and so on). The model returns JSON, and
 real dates, hours must be between 0 and 40. Anything else is dropped. If the model is
 unreachable, the assistant says so and keeps working with rules only.
 
+The model is used in two places:
+
+- **Planning:** a planning-like message (English or Vietnamese) that the rules cannot read.
+- **Study:** a summary and three questions written from the student's notes, and grading of
+  free-text answers. Without a model, questions are fill-in-the-blank sentences from the note
+  and answers are compared after removing accents. If the student has no note on the topic,
+  the model writes general questions and the reply says so.
+
+Only one model call runs at a time (`llm._GPU`), so several visitors queue for the single GPU
+instead of competing for its memory.
+
 Choose the provider with environment variables, or copy `.env.example` to `.env` in the
 repository root and edit it. `.env` is ignored by Git, so keys are not committed.
 
@@ -20,20 +31,20 @@ What you need:
 | Item | Notes |
 |---|---|
 | [Ollama](https://ollama.com/download) | Installs a local model server on Windows, macOS, or Linux and listens on `http://localhost:11434`. |
-| A small instruction model | For example `qwen2.5:3b` (about 2 GB). Larger models such as `qwen2.5:7b` read requests better but need more memory. |
+| A multilingual instruction model | `qwen3:14b` (about 9 GB) for a 12 GB GPU such as the RTX 5070; it reads Vietnamese and English well. Use `qwen3:8b` (about 5 GB) on smaller GPUs. |
 | Hardware | About 8 GB RAM for a 3B model on CPU. A GPU with 6 GB or more VRAM makes replies much faster. Replies on CPU can take several seconds. |
 
 Steps:
 
 ```bash
-ollama pull qwen2.5:3b
+ollama pull qwen3:14b
 ```
 
 Then set in `.env`:
 
 ```text
 ASSISTANT_LLM=ollama
-ASSISTANT_LLM_MODEL=qwen2.5:3b
+ASSISTANT_LLM_MODEL=qwen3:14b
 ```
 
 Start the assistant with `python -m assistant serve`. The first line printed shows

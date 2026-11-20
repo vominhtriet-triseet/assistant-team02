@@ -13,7 +13,8 @@ import sys
 from datetime import date
 from pathlib import Path
 
-from assistant.service import Session, process_request
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))  # works without pip install -e .
+from assistant.service import Session, process_request  # noqa: E402
 
 TODAY = date(2026, 10, 26)
 CASES = Path(__file__).with_name("cases.csv")

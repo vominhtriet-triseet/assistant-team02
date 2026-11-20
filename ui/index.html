@@ -16,8 +16,8 @@
   }
   * { box-sizing: border-box; }
   body { margin: 0; font: 15px/1.5 var(--body); color: var(--ink); background: var(--paper); }
-  .app { display: grid; grid-template-columns: minmax(0, 1fr) 340px; height: 100vh; }
-  main { display: flex; flex-direction: column; min-width: 0; }
+  .app { display: grid; grid-template-columns: minmax(0, 1fr) 340px; grid-template-rows: minmax(0, 1fr); height: 100vh; }
+  main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
   header { padding: 18px 32px; border-bottom: 1px solid var(--line); background: var(--surface); }
   h1, h2 { font-family: var(--display); font-weight: 600; margin: 0; }
   h1 { font-size: 21px; } h2 { font-size: 19px; }
@@ -65,7 +65,7 @@
   .empty { color: var(--muted); font-size: 14px; }
   .reset { align-self: flex-start; font: 600 14px var(--body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; cursor: pointer; }
   @media (max-width: 860px) {
-    .app { grid-template-columns: 1fr; height: auto; min-height: 100vh; }
+    .app { grid-template-columns: 1fr; grid-template-rows: none; height: auto; min-height: 100vh; }
     #log { min-height: 55vh; padding: 18px 16px; } header, form { padding-left: 16px; padding-right: 16px; }
     aside { border-left: 0; border-top: 1px solid var(--line); }
   }
@@ -76,29 +76,51 @@
   <main>
     <header>
       <h1>Student Learning Assistant</h1>
-      <p>Tell me what you need to do. I will turn it into tasks and a study schedule you can check.</p>
+      <p id="tagline">Tell me what you need to do, save notes, and practise. Tiếng Việt hoặc English đều được.</p>
     </header>
     <div id="log" aria-live="polite"><div class="lane" id="lane"></div></div>
     <form id="form">
       <div class="composer">
         <input id="message" autocomplete="off" aria-label="Your message"
-          placeholder="For example: I have a calculus problem set due Friday and a midterm next Wednesday">
-        <button class="send" type="submit">Send</button>
+          placeholder="Ví dụ: Tôi có bài tập giải tích hạn thứ 6 / I have an essay due Friday">
+        <button class="send" type="submit" id="send">Send</button>
       </div>
     </form>
   </main>
   <aside aria-label="Plan draft">
-    <div><h2>Plan draft</h2><p class="muted" id="status">No tasks yet</p></div>
-    <section><h3>Tasks</h3><div id="tasks"><p class="empty">Tasks you mention will appear here.</p></div></section>
-    <section><h3>From you</h3><ul class="list" id="facts" style="--sw: var(--hl-date)"></ul></section>
-    <section><h3>Assumed, please check</h3><ul class="list" id="assumptions" style="--sw: var(--hl-missing)"></ul></section>
-    <button class="reset" type="button" id="reset">Start a new plan</button>
+    <div><h2 data-l="plan">Plan draft</h2><p class="muted" id="status">No tasks yet</p></div>
+    <section><h3 data-l="tasks">Tasks</h3><div id="tasks"><p class="empty">Tasks you mention will appear here.</p></div></section>
+    <section><h3 data-l="facts">From you</h3><ul class="list" id="facts" style="--sw: var(--hl-date)"></ul></section>
+    <section><h3 data-l="assumed">Assumed, please check</h3><ul class="list" id="assumptions" style="--sw: var(--hl-missing)"></ul></section>
+    <button class="reset" type="button" id="reset" data-l="reset">Start a new plan</button>
   </aside>
 </div>
 <script>
 const lane = document.getElementById("lane");
 const input = document.getElementById("message");
+const L = {
+  en: { plan: "Plan draft", tasks: "Tasks", facts: "From you", assumed: "Assumed, please check", reset: "Start a new plan",
+        send: "Send", who: "Assistant", picked: "Here is what I picked up from your message:", hours: "Hours per day?",
+        check: "Check this", sources: "Based on", due: "Due", none: "No deadline", about: "about", estimate: " (estimate)",
+        empty: "Tasks you mention will appear here.", notasks: "No tasks yet", saved: "Saved on the server.",
+        open: n => `${n} open task${n === 1 ? "" : "s"}.`, done: title => `mark ${title} as done`,
+        resetMsg: "reset", locale: "en-GB", offline: "The assistant server is not reachable. Start it with: python -m assistant serve" },
+  vi: { plan: "Kế hoạch nháp", tasks: "Việc cần làm", facts: "Bạn đã cho biết", assumed: "Giả định, hãy kiểm tra", reset: "Làm kế hoạch mới",
+        send: "Gửi", who: "Trợ lý", picked: "Đây là những gì mình đọc được từ tin nhắn của bạn:", hours: "Mỗi ngày mấy tiếng?",
+        check: "Cần kiểm tra", sources: "Dựa trên", due: "Hạn", none: "Chưa có hạn", about: "khoảng", estimate: " (ước tính)",
+        empty: "Việc bạn nhắc tới sẽ hiện ở đây.", notasks: "Chưa có việc nào", saved: "Đã lưu trên máy chủ.",
+        open: n => `${n} việc chưa xong.`, done: title => `đánh dấu ${title} là xong`,
+        resetMsg: "làm lại", locale: "vi-VN", offline: "Không kết nối được máy chủ trợ lý. Hãy chạy: python -m assistant serve" },
+};
+let lang = "en";
 let sessionId = null;
+try { sessionId = localStorage.getItem("sessionId"); } catch (e) { /* storage blocked: keep the plan for this tab only */ }
+function setLang(next) {
+  lang = L[next] ? next : "en";
+  document.documentElement.lang = lang;
+  for (const node of document.querySelectorAll("[data-l]")) node.textContent = L[lang][node.dataset.l];
+  document.getElementById("send").textContent = L[lang].send;
+}
 
 function el(tag, cls, text) {
   const node = document.createElement(tag);
@@ -144,16 +166,20 @@ function scheduleView(days) {
 
 function addBot(data, userText) {
   const msg = el("div", "bot");
-  msg.append(el("div", "who", "Assistant"));
+  msg.append(el("div", "who", L[lang].who));
   if (data.highlights && data.highlights.length) {
-    msg.append(el("div", "text", "Here is what I picked up from your message:"));
-    msg.append(highlighted(userText, data.highlights, data.intent === "clarification" ? "Hours per day?" : ""));
+    msg.append(el("div", "text", L[lang].picked));
+    msg.append(highlighted(userText, data.highlights, data.intent === "clarification" ? L[lang].hours : ""));
   }
   msg.append(el("div", "text", data.message || data.error));
+  if (data.intent === "study" && data.citations && data.citations.length) {
+    const cites = data.citations.map(c => `#${c.note_id} ${c.title}${c.source_url ? " (" + c.source_url + ")" : ""}`);
+    msg.append(el("div", "muted", `${L[lang].sources}: ${cites.join("; ")}`));
+  }
   if (data.schedule && data.schedule.length) msg.append(scheduleView(data.schedule));
   for (const w of data.warnings || []) {
     const box = el("div", "warn");
-    box.append(el("strong", "", "Check this"));
+    box.append(el("strong", "", L[lang].check));
     box.append(w);
     msg.append(box);
   }
@@ -172,14 +198,14 @@ function addBot(data, userText) {
 
 function readableDate(iso) {
   const [y, m, d] = iso.split("-").map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" });
+  return new Date(y, m - 1, d).toLocaleDateString(L[lang].locale, { weekday: "short", day: "numeric", month: "short" });
 }
 
 function renderPanel(data) {
   const tasks = document.getElementById("tasks");
   tasks.replaceChildren();
   const list = data.tasks || [];
-  if (!list.length) tasks.append(el("p", "empty", "Tasks you mention will appear here."));
+  if (!list.length) tasks.append(el("p", "empty", L[lang].empty));
   const priority = Object.fromEntries((data.priorities || []).map(p => [p.task_id, p]));
   for (const t of list) {
     const row = el("label", t.status === "done" ? "task done" : "task");
@@ -187,11 +213,11 @@ function renderPanel(data) {
     box.type = "checkbox";
     box.checked = t.status === "done";
     box.disabled = t.status === "done";
-    box.addEventListener("change", () => send(`mark ${t.title} as done`));
+    box.addEventListener("change", () => send(L[lang].done(t.title)));
     const body = el("div");
     body.append(el("strong", "", t.title));
-    const due = t.deadline ? `Due ${readableDate(t.deadline)}${t.deadline_time ? " " + t.deadline_time : ""}` : "No deadline";
-    body.append(el("small", "", `${due}, about ${t.hours} h${t.hours_assumed ? " (estimate)" : ""} `));
+    const due = t.deadline ? `${L[lang].due} ${readableDate(t.deadline)}${t.deadline_time ? " " + t.deadline_time : ""}` : L[lang].none;
+    body.append(el("small", "", `${due}, ${L[lang].about} ${Math.round(t.hours * 100) / 100} h${t.hours_assumed ? L[lang].estimate : ""} `));
     if (priority[t.id]) body.append(el("span", `pill ${priority[t.id].priority}`, priority[t.id].priority));
     row.append(box, body);
     tasks.append(row);
@@ -202,7 +228,7 @@ function renderPanel(data) {
   }
   const open = list.filter(t => t.status !== "done").length;
   document.getElementById("status").textContent =
-    list.length ? `${open} open task${open === 1 ? "" : "s"}. Not saved anywhere yet.` : "No tasks yet";
+    list.length ? `${L[lang].open(open)} ${L[lang].saved}` : L[lang].notasks;
 }
 
 async function send(text) {
@@ -218,19 +244,24 @@ async function send(text) {
     });
     const data = await res.json();
     sessionId = data.session_id || sessionId;
+    try { localStorage.setItem("sessionId", sessionId); } catch (e) { /* ignore */ }
+    if (data.lang) setLang(data.lang);
     addBot(data, text);
     if (res.ok) renderPanel(data);
   } catch (err) {
-    addBot({ message: "The assistant server is not reachable. Start it with: python -m assistant serve" }, text);
+    addBot({ message: L[lang].offline }, text);
   }
   document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight;
 }
 
 document.getElementById("form").addEventListener("submit", e => { e.preventDefault(); send(input.value); });
-document.getElementById("reset").addEventListener("click", () => send("reset"));
+document.getElementById("reset").addEventListener("click", () => send(L[lang].resetMsg));
 addBot({
-  message: "Hi! Tell me about your tasks and deadlines, or ask where a campus office is.",
-  suggestions: ["I have a calculus problem set due Friday and a midterm next Wednesday", "Where is the library?", "help"],
+  message: "Xin chào! Hãy kể về việc cần làm và hạn chót, lưu ghi chú, hoặc hỏi phòng ban ở đâu.\n"
+    + "Hi! Tell me about your tasks and deadlines, save notes, or ask where a campus office is.",
+  suggestions: sessionId
+    ? ["Xem kế hoạch", "Xem ghi chú", "Show my plan"]
+    : ["Tôi có bài tập giải tích hạn thứ 6 và thi giữa kỳ thứ 4 tuần sau", "I have a calculus problem set due Friday", "giúp", "help"],
 }, "");
 </script>
 </body>

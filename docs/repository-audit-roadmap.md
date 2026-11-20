@@ -1,5 +1,7 @@
 # Repository audit and improvement roadmap
 
+> **Status (Nov 2026):** this is the original audit, kept for the progress defense. The `src/` layout, single service, behavior tests, evaluator, web UI, planning, knowledge management (notes), study support (quizzes), and SQLite storage are now implemented. See the README for the current state.
+
 ## Audit summary
 
 The repository is currently a prototype assembled from several disconnected lab components. It does not yet implement the three features described in the feature-analysis document as one coherent assistant.

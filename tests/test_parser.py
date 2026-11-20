@@ -63,3 +63,9 @@ def test_highlights_point_at_the_original_text(today):
     result = parse(text, today)
     assert {"text": "due Friday", "kind": "date"} in result.highlights
     assert {"text": "calculus problem set", "kind": "task"} in result.highlights
+
+
+def test_duration_words_do_not_stay_in_the_title(today):
+    for text in ("essay due Friday, it takes 3 hours", "essay due Friday (3 hours)"):
+        task = parse(text, today).tasks[0]
+        assert task.title == "Essay" and task.hours == 3
