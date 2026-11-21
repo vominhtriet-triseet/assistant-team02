@@ -104,3 +104,28 @@ def test_rules_are_used_before_the_language_model(session, today):
     provider = FakeProvider(error="should not be called")
     response = process_request("essay due Friday", session, today=today, provider=provider)
     assert response["tasks"][0]["title"] == "Essay" and response["warnings"] == []
+
+
+def test_assumptions_survive_an_office_question(session, today):
+    process_request("essay due Friday", session, today=today)
+    plan = process_request("2 hours every day", session, today=today)
+    office = process_request("Where is the library?", session, today=today)
+    assert office["intent"] == "office" and office["assumptions"] == plan["assumptions"] != []
+    assert process_request("reset", session, today=today)["assumptions"] == []
+
+
+LONG = "hôm nay phải hoàn thành bài tập mà thầy giao từ buổi trước liên quan tới đồ thị và cây nhị phân"
+
+
+def test_a_sentence_read_as_one_long_title_goes_to_the_model(session, today):
+    assert len(process_request(LONG, session, today=today)["tasks"][0]["title"].split()) > 8  # rules alone
+    session.reset_plan()
+    reply = {"tasks": [{"title": "Bài tập đồ thị và cây nhị phân", "kind": "assignment", "deadline": "2026-10-26", "hours": None}]}
+    response = process_request(LONG, session, today=today, provider=FakeProvider(reply))
+    assert [t["title"] for t in response["tasks"]] == ["Bài tập đồ thị và cây nhị phân"]
+    assert response["tasks"][0]["source"] == "llm"
+
+
+def test_model_failure_keeps_the_rule_reading(session, today):
+    response = process_request(LONG, session, today=today, provider=FakeProvider(error="offline"))
+    assert len(response["tasks"]) == 1 and "Dịch vụ AI không hoạt động" in response["warnings"][0]

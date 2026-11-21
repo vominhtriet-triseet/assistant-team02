@@ -13,3 +13,12 @@ __pycache__/
 .vscode/
 
 data/raw/
+
+# SQLite database with students' plans and notes (created by the server)
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/*.log
+
+# Project report (LaTeX, PDF, exports) is kept locally, not on GitHub
+report/

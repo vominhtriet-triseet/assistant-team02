@@ -13,19 +13,34 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 import urllib.error
 import urllib.request
 from datetime import date
 
 from assistant import REPO_ROOT
 
-SYSTEM_PROMPT = """You extract study tasks from a student's message.
+SYSTEM_PROMPT = """You extract study tasks from a student's message, written in Vietnamese or English.
 Reply with JSON only, using this shape:
 {"tasks": [{"title": str, "kind": "exam|quiz|assignment|project|presentation|reading|review|other",
             "deadline": "YYYY-MM-DD" or null, "hours": number or null}],
  "hours_per_day": number or null}
 Rules: include only tasks the student mentioned. Use null for anything not stated.
-Never invent deadlines or durations. Resolve relative dates from the given today date."""
+Never invent deadlines or durations. Resolve relative dates from the given today date.
+Keep each title short and in the student's own language."""
+
+STUDY_PROMPT = """You help a student practise. Use only the material given; if no material is given,
+use well-established textbook knowledge and keep it basic. Reply with JSON only:
+{"summary": str (2-3 sentences), "questions": [{"question": str, "answer": str (a short answer)}]}
+Write exactly 3 short questions. Write everything in {language}."""
+
+GRADE_PROMPT = """You grade a student's answer to a practice question. Accept answers with the same
+meaning, small typos, or missing accents. Reply with JSON only:
+{"correct": true or false, "feedback": str (one short sentence in {language})}"""
+
+LANGUAGES = {"vi": "Vietnamese", "en": "English"}
+# One model call at a time: a single GPU serves every visitor, so requests queue instead of thrashing VRAM.
+_GPU = threading.Semaphore(1)
 
 
 class LLMError(RuntimeError):
@@ -48,7 +63,7 @@ def _post_json(url: str, payload: dict, headers: dict[str, str], timeout: float)
         url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json", **headers}
     )
     try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
+        with _GPU, urllib.request.urlopen(request, timeout=timeout) as response:
             return json.loads(response.read().decode("utf-8"))
     except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
         raise LLMError(f"Could not reach the language model: {exc}") from exc
@@ -59,14 +74,16 @@ class OllamaProvider:
 
     def __init__(self) -> None:
         self.host = os.environ.get("OLLAMA_HOST", "http://localhost:11434").rstrip("/")
-        self.model = os.environ.get("ASSISTANT_LLM_MODEL", "qwen2.5:3b")
+        self.model = os.environ.get("ASSISTANT_LLM_MODEL", "qwen3:14b")
 
-    def complete_json(self, system: str, user: str, timeout: float = 60) -> dict:
+    def complete_json(self, system: str, user: str, timeout: float = 120) -> dict:
         payload = {
             "model": self.model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             "stream": False,
             "format": "json",
+            "think": False,  # Qwen3 answers directly; no hidden reasoning tokens before the JSON
+            "keep_alive": "30m",  # keep the model in VRAM between messages
             "options": {"temperature": 0},
         }
         data = _post_json(f"{self.host}/api/chat", payload, {}, timeout)
@@ -83,7 +100,7 @@ class OpenAICompatibleProvider:
         if not self.api_key or not self.model:
             raise LLMError("Set OPENAI_API_KEY and ASSISTANT_LLM_MODEL to use the openai provider.")
 
-    def complete_json(self, system: str, user: str, timeout: float = 60) -> dict:
+    def complete_json(self, system: str, user: str, timeout: float = 120) -> dict:
         payload = {
             "model": self.model,
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
@@ -124,3 +141,15 @@ def get_provider():
 def extract_plan(provider, text: str, today: date) -> dict:
     user = f"Today is {today.isoformat()} ({today.strftime('%A')}).\nStudent message: {text}"
     return provider.complete_json(SYSTEM_PROMPT, user)
+
+
+def study_pack(provider, topic: str, material: str, lang: str) -> dict:
+    system = STUDY_PROMPT.replace("{language}", LANGUAGES[lang])
+    user = f"Topic: {topic}\nMaterial:\n{material[:6000] or '(none)'}"
+    return provider.complete_json(system, user)
+
+
+def grade(provider, question: str, expected: str, reply: str, lang: str) -> dict:
+    system = GRADE_PROMPT.replace("{language}", LANGUAGES[lang])
+    user = f"Question: {question}\nExpected answer: {expected}\nStudent answer: {reply[:500]}"
+    return provider.complete_json(system, user)

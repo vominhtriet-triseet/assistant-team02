@@ -7,8 +7,10 @@ proposes a study schedule that respects deadlines and available time. When the w
 does not fit, it says so instead of hiding the problem. It also answers questions
 about campus offices from `data/offices.csv`.
 
-This is the MVP of Feature 1 (planning and task execution) from the project report.
-Knowledge management and study support are planned for later versions.
+All three features from the project report work: planning and task execution,
+knowledge management (the student's own notes), and study support (quizzes from those
+notes). Messages can be in Vietnamese or English; the reply follows the language of the
+message. Plans and notes are stored in SQLite, so they survive a server restart.
 
 ## What works
 
@@ -19,11 +21,18 @@ Knowledge management and study support are planned for later versions.
 | Read study time and busy days | `About 3 hours on weekdays. I'm busy all Saturday.` |
 | Build a schedule and report conflicts | earliest deadline first, exam preparation ends the day before the exam |
 | Update the plan | `mark calculus problem set as done`, `show my plan`, `reset` |
-| Campus offices, including partial names | `Where is the library?`, `faculty office hours` |
-| Optional AI reading of unusual requests | local model (Ollama) or an API key, see [docs/ai-setup.md](docs/ai-setup.md) |
+| Task dependencies | `do the slides after the essay` |
+| Save and organize notes and links | `save note: Derivatives - the derivative of x^2 is 2x #calculus`, `save link https://... #tag` |
+| Search notes (accent-insensitive), link to tasks, delete | `find notes about derivatives`, `find #calculus`, `link note 1 to essay`, `delete note 1` |
+| Study session: summary, questions, feedback | `quiz me on derivatives`, `study note 1` |
+| Review suggestion added to the plan | `add review to plan` |
+| Vietnamese | `Tôi có bài tập giải tích hạn thứ 6`, `Mỗi ngày tôi học được 3 tiếng, thứ 7 bận`, `kiểm tra tôi về đạo hàm` |
+| Campus offices, including partial names | `Where is the library?`, `Thư viện ở đâu?` |
+| Optional local AI for unusual requests and better quizzes | Ollama with `qwen3:14b`, see [docs/ai-setup.md](docs/ai-setup.md) |
 
 Every guess (a task duration, which week "next Wednesday" means) is listed as an
-assumption so the student can correct it.
+assumption so the student can correct it. Searches and quizzes use only notes the
+student saved; a source is the student's own link or "your note #3", never an invented one.
 
 ## Setup
 
@@ -63,7 +72,11 @@ Web chat page:
 python -m assistant serve
 ```
 
-Then open http://127.0.0.1:8000. Use `--port 8080` to change the port.
+Then open http://127.0.0.1:8000. Use `--port 8080` to change the port. Data is stored in
+`data/assistant.db` (ignored by Git); set `ASSISTANT_DB` to use another file.
+
+To publish it at https://assistant.triseet.site from the GPU PC, follow
+[docs/deploy.md](docs/deploy.md).
 
 Command line, one message:
 
@@ -84,7 +97,7 @@ python -m pytest -q
 python eval/run.py
 ```
 
-`eval/run.py` runs the 15 benchmark cases in `eval/cases.csv` with a fixed date, so
+`eval/run.py` runs the 23 benchmark cases in `eval/cases.csv` with a fixed date, so
 the results are the same on every machine.
 
 ## Project layout
@@ -92,8 +105,12 @@ the results are the same on every machine.
 ```text
 src/assistant/
   service.py          process_request(): the single entry point for every interface
-  planning/parser.py  rule-based reading of tasks, dates, durations, study time
-  planning/scheduler.py  earliest-deadline-first schedule with daily capacity
+  planning/parser.py  rule-based reading of tasks, dates, durations, study time (English and Vietnamese)
+  planning/scheduler.py  earliest-deadline-first schedule with daily capacity and dependencies
+  knowledge.py        Feature 2: save, search, link, and delete notes
+  study.py            Feature 3: quiz questions, grading, review task
+  i18n.py             language detection and Vietnamese replies
+  storage.py          SQLite, the 8 tables of the report's data model
   offices.py          office lookup with partial names
   llm.py              optional Ollama or OpenAI-compatible provider
   server.py           HTTP server for the chat page (standard library only)
@@ -103,7 +120,7 @@ data/                 synthetic data used by the assistant
 eval/                 benchmark cases and runner
 tests/                unit, service, and server tests
 docs/                 design documents
-report/               project report (LaTeX source and figures)
+report/               project report, kept locally (ignored by Git)
 ```
 
 The response format of `process_request()` is described in

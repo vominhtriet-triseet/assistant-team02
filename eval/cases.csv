@@ -14,3 +14,11 @@ id,input,expected_intent,expected_text
 13,show my plan,planning,no tasks yet
 14,What is the weather today?,fallback,can't help with that yet
 15,mark essay as done,planning,nothing to mark as done
+16,Tôi có bài tập giải tích hạn thứ 6,clarification,mấy tiếng
+17,Thư viện ở đâu?,office,phòng B.201
+18,bài tập giải tích hạn thứ 6 và mỗi ngày học được 2 tiếng,planning,lịch nháp
+19,save note: Derivatives - the derivative of x^2 is 2x #calculus,knowledge,Saved note #1
+20,lưu ghi chú: Đạo hàm - đạo hàm của x^2 là 2x,knowledge,Đã lưu ghi chú #1
+21,find notes about derivatives,knowledge,no saved notes
+22,quiz me on thermodynamics,clarification,Save a note first
+23,giúp,help,Ghi chú

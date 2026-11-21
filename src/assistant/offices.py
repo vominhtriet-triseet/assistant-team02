@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 
 from assistant import DATA_DIR
+from assistant.i18n import t
 
 # Words that appear in many office names and say nothing about which one is meant.
 STOPWORDS = {
@@ -14,6 +15,16 @@ STOPWORDS = {
 }
 
 Office = dict[str, str]
+
+# Vietnamese words mapped to the English names in data/offices.csv.
+VI_ALIASES = {
+    "thư viện": "library", "mượn sách": "circulation", "trả sách": "circulation", "tra cứu": "reference",
+    "phòng đào tạo": "training office", "đào tạo": "training", "công tác sinh viên": "student affairs",
+    "ctsv": "student affairs", "hỗ trợ kỹ thuật": "it helpdesk", "hỗ trợ it": "it helpdesk",
+    "khoa công nghệ thông tin": "faculty information technology", "khoa cntt": "faculty information technology",
+    "văn phòng khoa": "faculty", "giáo vụ": "academic affairs", "học vụ": "academic affairs",
+    "thủ đức": "thu duc", "nguyễn văn cừ": "nguyen van cu",
+}
 
 
 def load_offices(path: Path | None = None) -> list[Office]:
@@ -39,18 +50,20 @@ def find_offices(text: str, offices: list[Office]) -> list[Office]:
     return [max(exact, key=lambda o: len(o["name"]))] if exact else candidates
 
 
-def describe(office: Office) -> str:
+def describe(office: Office, lang: str = "en") -> str:
     if office["room"].lower().startswith("not listed"):
-        return f"{office['name']}: the room and opening hours are not published."
-    return f"{office['name']}: room {office['room']}, open {office['hours']}."
+        return t(lang, "{name}: the room and opening hours are not published.", name=office["name"])
+    return t(lang, "{name}: room {room}, open {hours}.", **office)
 
 
-def answer(text: str, offices: list[Office] | None = None) -> str | None:
+def answer(text: str, offices: list[Office] | None = None, lang: str = "en") -> str | None:
     """Answer an office question, or return None when no office matches."""
-    matches = find_offices(text, offices if offices is not None else load_offices())
+    lowered = text.lower()
+    query = " ".join([text, *(en for vi, en in VI_ALIASES.items() if vi in lowered)])
+    matches = find_offices(query, offices if offices is not None else load_offices())
     if not matches:
         return None
     if len(matches) == 1:
-        return describe(matches[0])
+        return describe(matches[0], lang)
     names = "\n".join(f"- {o['name']}" for o in matches)
-    return f"Several offices match. Which one do you mean?\n{names}"
+    return t(lang, "Several offices match. Which one do you mean?") + "\n" + names

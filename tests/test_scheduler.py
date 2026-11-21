@@ -62,3 +62,32 @@ def test_task_without_deadline_uses_one_week(today):
     schedule, warnings, assumptions = build_schedule([task], WEEKDAYS_3H, today)
     assert hours_by_task(schedule) == {"Read chapter 4": 2}
     assert "next 7 days" in assumptions[0]
+
+
+def test_zero_hours_names_the_tasks_using_the_time(today):
+    report = Task("Lab report", kind="assignment", deadline=date(2026, 10, 26), hours=4, id=1)
+    exam = Task("Prepare for physics final", kind="exam", deadline=date(2026, 10, 27), hours=8, id=2)
+    _, warnings, _ = build_schedule([report, exam], WEEKDAYS_3H, today)
+    assert any("only 0 h fit" in w and "already used by Lab report" in w for w in warnings)
+
+
+def test_dependency_waits_for_the_other_task(today):
+    essay = Task("Essay", kind="assignment", deadline=date(2026, 10, 30), hours=4, id=1)
+    slides = Task("Slides", kind="presentation", deadline=date(2026, 10, 29), hours=2, id=2)
+    schedule, warnings, assumptions = build_schedule([essay, slides], WEEKDAYS_3H, today, dependencies={(2, 1)})
+    first_slides = next(d["date"] for d in schedule if any(b["title"] == "Slides" and not b["event"] for b in d["blocks"]))
+    assert first_slides == "2026-10-27"  # essay finishes on Tuesday, so slides start that day, not Monday
+    assert warnings == [] and any("depends on it" in a for a in assumptions)
+
+
+def test_dependency_loop_is_reported(today):
+    a = Task("A", deadline=date(2026, 10, 30), hours=1, id=1)
+    b = Task("B", deadline=date(2026, 10, 30), hours=1, id=2)
+    _, warnings, _ = build_schedule([a, b], WEEKDAYS_3H, today, dependencies={(1, 2), (2, 1)})
+    assert any("loop" in w for w in warnings)
+
+
+def test_vietnamese_schedule_labels(today):
+    essay = Task("Tiểu luận", kind="assignment", deadline=date(2026, 10, 27), hours=1, id=1)
+    schedule, _, _ = build_schedule([essay], WEEKDAYS_3H, today, lang="vi")
+    assert schedule[1]["day"] == "T3 27/10" and schedule[1]["blocks"][0]["title"] == "Hạn nộp Tiểu luận"
