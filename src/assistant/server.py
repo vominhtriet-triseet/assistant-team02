@@ -26,6 +26,16 @@ from assistant import DATA_DIR, UI_DIR, llm, storage
 from assistant.service import Session, process_request
 
 MAX_BODY_BYTES = 16_000
+# Sent with every response. The page uses inline CSS/JS and Google Fonts, nothing else.
+SECURITY_HEADERS = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Referrer-Policy": "no-referrer",
+    "Content-Security-Policy": (
+        "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'"
+    ),
+}
 SESSION_ID_RE = re.compile(r"^[0-9a-f]{32}$")
 _locks: dict[str, threading.Lock] = {}
 _locks_guard = threading.Lock()
@@ -40,11 +50,16 @@ def _session_lock(session_id: str) -> threading.Lock:
 class Handler(BaseHTTPRequestHandler):
     provider = None
     db_path = DATA_DIR / "assistant.db"
+    timeout = 15  # seconds a connection may sit idle or half-sent before it is dropped (slowloris)
+    server_version = "assistant"  # no Python version in the Server header
+    sys_version = ""
 
     def _send(self, status: int, body: bytes, content_type: str) -> None:
         self.send_response(status)
         self.send_header("Content-Type", content_type)
         self.send_header("Content-Length", str(len(body)))
+        for name, value in SECURITY_HEADERS.items():
+            self.send_header(name, value)
         self.end_headers()
         self.wfile.write(body)
 
@@ -52,11 +67,21 @@ class Handler(BaseHTTPRequestHandler):
         self._send(status, json.dumps(data, ensure_ascii=False).encode("utf-8"), "application/json; charset=utf-8")
 
     def _read_json(self) -> dict | None:
-        length = int(self.headers.get("Content-Length") or 0)
+        try:
+            length = int(self.headers.get("Content-Length") or 0)
+        except ValueError:  # "Content-Length: abc"
+            return None
         if length <= 0 or length > MAX_BODY_BYTES:
             return None
         try:
-            data = json.loads(self.rfile.read(length).decode("utf-8"))
+            raw = self.rfile.read(length)
+        except OSError:  # includes the socket timeout for a half-sent body
+            self.close_connection = True
+            return None
+        if len(raw) < length:
+            return None
+        try:
+            data = json.loads(raw.decode("utf-8"))
         except (UnicodeDecodeError, json.JSONDecodeError):
             return None
         return data if isinstance(data, dict) else None
@@ -86,6 +111,10 @@ class Handler(BaseHTTPRequestHandler):
         if self.path != "/api/chat":
             self._json(404, {"error": "Not found."})
             return
+        if session_id:  # only ids the server issued earlier; a made-up id gets a fresh session (no fixation)
+            with closing(storage.connect(self.db_path)) as conn:
+                if storage.load(conn, session_id) is None:
+                    session_id = None
         session_id = session_id or uuid.uuid4().hex
         with _session_lock(session_id):
             try:
