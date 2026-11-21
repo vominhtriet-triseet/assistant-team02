@@ -15,6 +15,7 @@ import argparse
 import json
 import os
 import re
+import sqlite3
 import sys
 import threading
 import traceback
@@ -38,6 +39,10 @@ SECURITY_HEADERS = {
 }
 SESSION_ID_RE = re.compile(r"^[0-9a-f]{32}$")
 _locks: dict[str, threading.Lock] = {}
+# All writes go through one lock, so SQLite never makes a writer wait and time out
+# ("database is locked" at 200 concurrent clients in the stress test).
+# ponytail: one server process; several processes would need a queue or another database.
+_db_write = threading.Lock()
 _locks_guard = threading.Lock()
 
 
@@ -60,6 +65,8 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         for name, value in SECURITY_HEADERS.items():
             self.send_header(name, value)
+        if status == 503:
+            self.send_header("Retry-After", "2")
         self.end_headers()
         self.wfile.write(body)
 
@@ -120,9 +127,14 @@ class Handler(BaseHTTPRequestHandler):
                 session_id, session = uuid.uuid4().hex, Session()
             try:
                 result = process_request(data.get("message"), session, provider=self.provider)
-                storage.save(conn, session_id, session)
+                with _db_write:
+                    storage.save(conn, session_id, session)
             except ValueError as exc:
                 self._json(400, {"error": str(exc), "session_id": session_id})
+                return
+            except sqlite3.OperationalError:  # still busy after waiting: say so instead of a generic error
+                traceback.print_exc()
+                self._json(503, {"error": "The server is busy. Try again in a moment.", "session_id": session_id})
                 return
             except Exception:  # noqa: BLE001 - never leak internals to the page
                 traceback.print_exc()

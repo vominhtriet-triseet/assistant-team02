@@ -615,6 +615,9 @@ def probe_server(root: Path, how: str) -> str:
         if how == "fixation":
             _, b, _ = post(srv.base, {"message": "hello", "session_id": "ab" * 16})
             return "client id accepted" if b.get("session_id") == "ab" * 16 else "new id issued"
+        if how == "locked":
+            r = ramp_level(srv.base, 200, 10)
+            return f"{r['errors']} of {r['requests']} requests failed {r['codes'] or ''}".strip()
         if how == "headers":
             with urllib.request.urlopen(srv.base + "/", timeout=5) as r:
                 return "nosniff/CSP present" if r.headers.get("X-Content-Type-Options") else f"no security headers; Server: {r.headers.get('Server')}"
@@ -676,6 +679,13 @@ BUGS = [
      "cause": "BaseHTTPRequestHandler defaults; no headers were added.",
      "fix": "server.py: security headers on every response, neutral Server header", "test": "tests/test_security.py::test_security_headers",
      "probe": ("server", "headers")},
+    {"id": "BUG-08", "title": "HTTP 500 \"database is locked\" under 200 concurrent clients", "severity": "Medium",
+     "found": "Stress test (concurrency ramp)", "before": "3af6f1d", "after": "HEAD",
+     "steps": "200 clients send 10 requests each at the same moment",
+     "expected": "Every request answered; slower is acceptable, failing is not",
+     "cause": "Each SQLite writer waited up to 10 s for the write lock, then raised OperationalError, reported as HTTP 500.",
+     "fix": "server.py: writes queue on one in-process lock; if SQLite is still busy the reply is 503 with Retry-After",
+     "test": "tests/test_security.py::test_concurrent_writes_do_not_fail", "probe": ("server", "locked")},
 ]
 
 

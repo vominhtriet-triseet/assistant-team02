@@ -108,11 +108,12 @@ TABLES = ("contexts", "tasks", "schedule_blocks", "task_dependencies",
           "knowledge_items", "task_knowledge", "study_sessions", "study_session_items")
 
 
+BUSY_TIMEOUT = 10  # seconds a connection waits for the write lock
 _ready: set[str] = set()  # database files whose schema and WAL mode are already set up in this process
 
 
 def connect(path: str | Path) -> sqlite3.Connection:
-    conn = sqlite3.connect(path, timeout=10)
+    conn = sqlite3.connect(path, timeout=BUSY_TIMEOUT)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")  # per connection
     if str(path) == ":memory:" or str(path) not in _ready:
