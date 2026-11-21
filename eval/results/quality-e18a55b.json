@@ -1,0 +1,1432 @@
+{
+ "version": "e18a55b",
+ "unit": {
+  "by_file": {
+   "test_integration.py": {
+    "pass": 7,
+    "fail": 0,
+    "tests": [
+     [
+      "test_IT01_api_passes_the_message_to_the_service",
+      true,
+      0.613
+     ],
+     [
+      "test_IT02_service_result_is_saved_in_storage",
+      true,
+      0.609
+     ],
+     [
+      "test_IT03_storage_carries_the_conversation_between_requests",
+      true,
+      0.625
+     ],
+     [
+      "test_IT04_task_update_reaches_scheduler_and_stored_blocks",
+      true,
+      0.627
+     ],
+     [
+      "test_IT05_a_failing_request_does_not_change_stored_data",
+      true,
+      0.593
+     ],
+     [
+      "test_IT06_model_failure_falls_back_to_rules_without_losing_data",
+      true,
+      0.003
+     ],
+     [
+      "test_IT07_note_quiz_and_review_task_are_linked_in_storage",
+      true,
+      0.006
+     ]
+    ]
+   },
+   "test_knowledge.py": {
+    "pass": 6,
+    "fail": 0,
+    "tests": [
+     [
+      "test_save_list_search_link_delete",
+      true,
+      0.002
+     ],
+     [
+      "test_search_ignores_vietnamese_accents",
+      true,
+      0.001
+     ],
+     [
+      "test_no_source_is_invented",
+      true,
+      0.001
+     ],
+     [
+      "test_link_needs_an_address",
+      true,
+      0.002
+     ],
+     [
+      "test_notes_survive_a_plan_reset",
+      true,
+      0.003
+     ],
+     [
+      "test_find_without_notes_word_is_not_a_note_search",
+      true,
+      0.001
+     ]
+    ]
+   },
+   "test_offices.py": {
+    "pass": 8,
+    "fail": 0,
+    "tests": [
+     [
+      "test_exact_name",
+      true,
+      0.001
+     ],
+     [
+      "test_longest_exact_name_wins",
+      true,
+      0.0
+     ],
+     [
+      "test_partial_name",
+      true,
+      0.001
+     ],
+     [
+      "test_partial_name_narrowed_by_campus",
+      true,
+      0.001
+     ],
+     [
+      "test_ambiguous_partial_name_asks_which",
+      true,
+      0.0
+     ],
+     [
+      "test_unpublished_details",
+      true,
+      0.002
+     ],
+     [
+      "test_unknown_office",
+      true,
+      0.002
+     ],
+     [
+      "test_pronoun_it_does_not_match_it_helpdesk",
+      true,
+      0.003
+     ]
+    ]
+   },
+   "test_parser.py": {
+    "pass": 12,
+    "fail": 0,
+    "tests": [
+     [
+      "test_two_tasks_with_deadlines",
+      true,
+      0.003
+     ],
+     [
+      "test_names_containing_and_stay_together",
+      true,
+      0.003
+     ],
+     [
+      "test_explicit_duration_and_time",
+      true,
+      0.002
+     ],
+     [
+      "test_day_month_date",
+      true,
+      0.001
+     ],
+     [
+      "test_availability_weekdays_and_busy_day",
+      true,
+      0.001
+     ],
+     [
+      "test_bare_hours_only_count_when_asked",
+      true,
+      0.001
+     ],
+     [
+      "test_availability_and_task_in_one_sentence",
+      true,
+      0.003
+     ],
+     [
+      "test_request_without_task_details_is_ignored",
+      true,
+      0.002
+     ],
+     [
+      "test_priority_from_deadline",
+      true,
+      0.001
+     ],
+     [
+      "test_highlights_point_at_the_original_text",
+      true,
+      0.001
+     ],
+     [
+      "test_duration_words_do_not_stay_in_the_title",
+      true,
+      0.001
+     ],
+     [
+      "test_busy_and_study_time_carry_over_a_list_of_days",
+      true,
+      0.001
+     ]
+    ]
+   },
+   "test_scheduler.py": {
+    "pass": 11,
+    "fail": 0,
+    "tests": [
+     [
+      "test_exam_work_stops_the_day_before",
+      true,
+      0.001
+     ],
+     [
+      "test_not_enough_time_is_reported_not_hidden",
+      true,
+      0.001
+     ],
+     [
+      "test_earliest_deadline_goes_first",
+      true,
+      0.001
+     ],
+     [
+      "test_blocked_and_unlisted_days_get_no_work",
+      true,
+      0.003
+     ],
+     [
+      "test_done_tasks_are_skipped",
+      true,
+      0.002
+     ],
+     [
+      "test_past_deadline",
+      true,
+      0.001
+     ],
+     [
+      "test_task_without_deadline_uses_one_week",
+      true,
+      0.001
+     ],
+     [
+      "test_zero_hours_names_the_tasks_using_the_time",
+      true,
+      0.001
+     ],
+     [
+      "test_dependency_waits_for_the_other_task",
+      true,
+      0.001
+     ],
+     [
+      "test_dependency_loop_is_reported",
+      true,
+      0.001
+     ],
+     [
+      "test_vietnamese_schedule_labels",
+      true,
+      0.001
+     ]
+    ]
+   },
+   "test_security.py": {
+    "pass": 5,
+    "fail": 0,
+    "tests": [
+     [
+      "test_malformed_content_length_gets_400",
+      true,
+      0.535
+     ],
+     [
+      "test_slow_body_is_dropped",
+      true,
+      1.619
+     ],
+     [
+      "test_unknown_session_id_is_replaced",
+      true,
+      0.627
+     ],
+     [
+      "test_security_headers",
+      true,
+      0.621
+     ],
+     [
+      "test_concurrent_writes_do_not_fail",
+      true,
+      4.022
+     ]
+    ]
+   },
+   "test_server.py": {
+    "pass": 7,
+    "fail": 0,
+    "tests": [
+     [
+      "test_chat_page_is_served",
+      true,
+      0.087
+     ],
+     [
+      "test_health",
+      true,
+      0.004
+     ],
+     [
+      "test_session_is_kept_between_messages",
+      true,
+      0.034
+     ],
+     [
+      "test_empty_message_is_rejected",
+      true,
+      0.006
+     ],
+     [
+      "test_bad_json_is_rejected",
+      true,
+      0.004
+     ],
+     [
+      "test_session_survives_in_the_database",
+      true,
+      0.052
+     ],
+     [
+      "test_forged_session_id_gets_a_new_session",
+      true,
+      0.507
+     ]
+    ]
+   },
+   "test_service.py": {
+    "pass": 18,
+    "fail": 0,
+    "tests": [
+     [
+      "test_invalid_input_raises[]",
+      true,
+      0.001
+     ],
+     [
+      "test_invalid_input_raises[   ]",
+      true,
+      0.001
+     ],
+     [
+      "test_invalid_input_raises[None]",
+      true,
+      0.001
+     ],
+     [
+      "test_invalid_input_raises[42]",
+      true,
+      0.001
+     ],
+     [
+      "test_response_keeps_the_documented_fields",
+      true,
+      0.001
+     ],
+     [
+      "test_help_lists_capabilities",
+      true,
+      0.001
+     ],
+     [
+      "test_office_question",
+      true,
+      0.002
+     ],
+     [
+      "test_unknown_request_falls_back",
+      true,
+      0.001
+     ],
+     [
+      "test_planning_conversation",
+      true,
+      0.003
+     ],
+     [
+      "test_chip_answer_to_clarification",
+      true,
+      0.001
+     ],
+     [
+      "test_reset_clears_the_plan",
+      true,
+      0.001
+     ],
+     [
+      "test_repeated_task_is_merged",
+      true,
+      0.002
+     ],
+     [
+      "test_language_model_output_is_validated",
+      true,
+      0.002
+     ],
+     [
+      "test_language_model_failure_falls_back",
+      true,
+      0.001
+     ],
+     [
+      "test_rules_are_used_before_the_language_model",
+      true,
+      0.001
+     ],
+     [
+      "test_assumptions_survive_an_office_question",
+      true,
+      0.002
+     ],
+     [
+      "test_a_sentence_read_as_one_long_title_goes_to_the_model",
+      true,
+      0.002
+     ],
+     [
+      "test_model_failure_keeps_the_rule_reading",
+      true,
+      0.001
+     ]
+    ]
+   },
+   "test_storage.py": {
+    "pass": 6,
+    "fail": 0,
+    "tests": [
+     [
+      "test_all_eight_tables_exist",
+      true,
+      0.002
+     ],
+     [
+      "test_round_trip_keeps_every_record",
+      true,
+      0.007
+     ],
+     [
+      "test_saving_twice_does_not_duplicate",
+      true,
+      0.005
+     ],
+     [
+      "test_deleting_a_context_cascades",
+      true,
+      0.005
+     ],
+     [
+      "test_database_rejects_invalid_rows",
+      true,
+      0.005
+     ],
+     [
+      "test_unknown_context_loads_as_none",
+      true,
+      0.002
+     ]
+    ]
+   },
+   "test_study.py": {
+    "pass": 7,
+    "fail": 0,
+    "tests": [
+     [
+      "test_quiz_feedback_and_review_task",
+      true,
+      0.001
+     ],
+     [
+      "test_quiz_can_be_stopped",
+      true,
+      0.001
+     ],
+     [
+      "test_no_material_asks_for_a_note",
+      true,
+      0.001
+     ],
+     [
+      "test_study_with_a_date_is_still_a_planning_task",
+      true,
+      0.001
+     ],
+     [
+      "test_vietnamese_quiz",
+      true,
+      0.001
+     ],
+     [
+      "test_model_questions_are_validated_and_graded",
+      true,
+      0.001
+     ],
+     [
+      "test_model_failure_falls_back_to_note_questions",
+      true,
+      0.002
+     ]
+    ]
+   },
+   "test_system.py": {
+    "pass": 7,
+    "fail": 0,
+    "tests": [
+     [
+      "test_ST01_new_task_appears_in_the_plan",
+      true,
+      0.605
+     ],
+     [
+      "test_ST02_earlier_deadline_reschedules_the_task",
+      true,
+      0.591
+     ],
+     [
+      "test_ST03_finished_task_is_no_longer_scheduled",
+      true,
+      0.642
+     ],
+     [
+      "test_ST04_missing_information_gets_a_question_not_a_plan",
+      true,
+      0.66
+     ],
+     [
+      "test_ST05_infeasible_plan_is_warned_not_forced",
+      true,
+      0.574
+     ],
+     [
+      "test_ST06_data_survives_a_server_restart",
+      true,
+      1.14
+     ],
+     [
+      "test_ST07_vietnamese_conversation_end_to_end",
+      true,
+      0.618
+     ]
+    ]
+   },
+   "test_vietnamese.py": {
+    "pass": 9,
+    "fail": 0,
+    "tests": [
+     [
+      "test_detect_language",
+      true,
+      0.001
+     ],
+     [
+      "test_vietnamese_tasks_dates_and_durations",
+      true,
+      0.002
+     ],
+     [
+      "test_vietnamese_time_duration_priority",
+      true,
+      0.003
+     ],
+     [
+      "test_vietnamese_availability",
+      true,
+      0.003
+     ],
+     [
+      "test_replies_follow_the_message_language",
+      true,
+      0.003
+     ],
+     [
+      "test_vietnamese_commands",
+      true,
+      0.002
+     ],
+     [
+      "test_vietnamese_office_question",
+      true,
+      0.001
+     ],
+     [
+      "test_every_reply_has_a_vietnamese_translation",
+      true,
+      0.025
+     ],
+     [
+      "test_casual_vietnamese_shares_the_closing_deadline",
+      true,
+      0.003
+     ]
+    ]
+   }
+  },
+  "passed": 103,
+  "failed": 0
+ },
+ "sim": {
+  "one": {
+   "lat": [
+    0.09784619999118149,
+    0.02557259995955974,
+    0.1391293000197038,
+    0.11258050001924857,
+    0.08473559998674318,
+    0.08823039999697357,
+    0.0783050999743864,
+    0.020291400025598705,
+    0.08505109994439408,
+    0.0174193000420928,
+    0.07081139995716512,
+    0.05473670002538711,
+    0.07177929999306798,
+    0.01981049997266382,
+    0.0490097000147216,
+    0.09573870000895113,
+    0.08024809998460114,
+    0.07517339999321848,
+    0.08466140000382438,
+    0.10684179997770116,
+    0.08163789997342974,
+    0.1040198999689892,
+    0.02835630002664402,
+    0.09977629996137694,
+    0.07343779999064282,
+    0.08541310002328828,
+    0.05271720001474023,
+    0.06874999997671694,
+    0.05454059998737648,
+    0.05731709999963641,
+    0.05461160000413656
+   ],
+   "errors": [],
+   "integrity": [],
+   "isolation": [],
+   "conversations": 24,
+   "wall": 31.695630073547363,
+   "rss_mb": 30.8203125
+  },
+  "five": {
+   "lat": [
+    0.0746934000053443,
+    0.15963949996512383,
+    0.17966620001243427,
+    0.20618820004165173,
+    0.23820510000223294,
+    0.08324370003538206,
+    0.10250189999351278,
+    0.0756550999940373,
+    0.07796690001850948,
+    0.07677300000796095,
+    0.08287969999946654,
+    0.032923499995376915,
+    0.016827800020109862,
+    0.07093440002063289,
+    0.09997979999752715,
+    0.09885930002201349,
+    0.037301599979400635,
+    0.059773300017695874,
+    0.08067179995123297,
+    0.020891599997412413,
+    0.05153870000503957,
+    0.051165100012440234,
+    0.07592259999364614,
+    0.09849860001122579,
+    0.10365070000989363,
+    0.07827099994756281,
+    0.09567489998880774,
+    0.024846200016327202,
+    0.09212190000107512,
+    0.07748779997928068,
+    0.09354610001901165,
+    0.11660040001152083,
+    0.09757539996644482,
+    0.0780737999593839,
+    0.06912360002752393,
+    0.022371099970769137,
+    0.021488300000783056,
+    0.0778942999895662,
+    0.07437100005336106,
+    0.09291579999262467,
+    0.021915499994065613,
+    0.08498110005166382,
+    0.018207899993285537,
+    0.08545249997405335,
+    0.08144869998795912,
+    0.08424649998778477,
+    0.026445999974384904,
+    0.07458879996556789,
+    0.07426229998236522,
+    0.09043560002464801,
+    0.08257869997760281,
+    0.08118659997126088,
+    0.07433979999041185,
+    0.08727469999575987,
+    0.07420219999039546,
+    0.0758104000124149,
+    0.11429550003958866,
+    0.11514290003105998,
+    0.023414900002535433,
+    0.06698970001889393,
+    0.01791110000340268,
+    0.09382509998977184,
+    0.11295149999205023,
+    0.0946119999862276,
+    0.02032319997670129,
+    0.1023509000078775,
+    0.11483740003313869,
+    0.06923480000114068,
+    0.020612800028175116,
+    0.016458700003568083,
+    0.02001490001566708,
+    0.07053750002523884,
+    0.06142540002474561,
+    0.08364470000378788,
+    0.07485299999825656,
+    0.0524159999913536,
+    0.058724300004541874,
+    0.05421289999503642,
+    0.052777200005948544,
+    0.05355849995976314,
+    0.056599500006996095,
+    0.02839769999263808,
+    0.026656000001821667,
+    0.024447500007227063,
+    0.036962500016670674,
+    0.08437050000065938,
+    0.023088699963409454,
+    0.02113980002468452,
+    0.09810239996295422,
+    0.0237842999631539,
+    0.07636800000909716,
+    0.08086310001090169,
+    0.07921739999437705,
+    0.04779089998919517,
+    0.024339199997484684,
+    0.0743147999746725,
+    0.08694870001636446,
+    0.07768340001348406,
+    0.07708010001806542,
+    0.07593729998916388,
+    0.12036890001036227,
+    0.09470100002363324,
+    0.01720429997658357,
+    0.08594730001641437,
+    0.015960599994286895,
+    0.02775770000880584,
+    0.07331109995720908,
+    0.03820720000658184,
+    0.10503360000438988,
+    0.09861770004499704,
+    0.06473059998825192,
+    0.06945219996850938,
+    0.0732290999731049,
+    0.07349279994377866,
+    0.09816049999790266,
+    0.09802759997546673,
+    0.09332429995993152,
+    0.09488609997788444,
+    0.11196260002907366,
+    0.023372100025881082,
+    0.08033130003605038,
+    0.02900669997325167,
+    0.024199600040446967,
+    0.08009579998906702,
+    0.10558809997746721,
+    0.11715489998459816,
+    0.10067169996909797,
+    0.043808799993712455,
+    0.020046699966769665,
+    0.023133300011977553,
+    0.0747059999848716,
+    0.07598680001683533,
+    0.07038039999315515,
+    0.10209359996952116,
+    0.02223740000044927,
+    0.07947459997376427,
+    0.0216626999899745,
+    0.0780314999865368,
+    0.07597800000803545,
+    0.03217800002312288,
+    0.11823389999335632,
+    0.022300700016785413,
+    0.08660019998205826,
+    0.02324759995099157,
+    0.08048979996237904,
+    0.10775140003534034,
+    0.06341750000137836,
+    0.07610700000077486,
+    0.019756100024096668,
+    0.04221440001856536,
+    0.03809380001621321,
+    0.0427491000154987,
+    0.07823250000365078,
+    0.02311599999666214,
+    0.0772432999801822,
+    0.0757733000209555,
+    0.06285810004919767,
+    0.060648599988780916,
+    0.09656909998739138,
+    0.15800500003388152,
+    0.08411949995206669,
+    0.08326440001837909,
+    0.05650720000267029,
+    0.041347999998833984,
+    0.06792329996824265,
+    0.02530109998770058,
+    0.027207600011024624,
+    0.05923060001805425,
+    0.07003679999615997,
+    0.033620999951381236,
+    0.07250319997547194,
+    0.04544490005355328,
+    0.07706089998828247,
+    0.07175929995719343,
+    0.10405989998253062,
+    0.07909439998911694,
+    0.07753389998106286,
+    0.08877339999889955,
+    0.0950029999949038,
+    0.024071200052276254,
+    0.05629809998208657,
+    0.09265960002085194,
+    0.08708349999506027,
+    0.10561939998297021,
+    0.043288699991535395,
+    0.07784230000106618,
+    0.08573739998973906,
+    0.02131000004010275,
+    0.0730189000023529,
+    0.026735200022812933,
+    0.07766170002287254,
+    0.08154829998966306,
+    0.06544359994586557,
+    0.09960409998893738,
+    0.05521810002392158,
+    0.061120000027585775,
+    0.09569350001402199,
+    0.07381550001446158,
+    0.09729679999873042,
+    0.020806999993510544,
+    0.018427499977406114,
+    0.08292590000201017,
+    0.07389570004306734,
+    0.0928882000152953,
+    0.09346730000106618,
+    0.079048799991142,
+    0.08693230000790209,
+    0.08263530000112951,
+    0.04683050001040101,
+    0.07712770003126934,
+    0.08326580002903938,
+    0.07741959998384118,
+    0.07202220003819093,
+    0.08980710001196712,
+    0.0699274999788031,
+    0.02633140003308654,
+    0.07213889999547973,
+    0.020200799976009876,
+    0.03748420003103092,
+    0.04481829999713227,
+    0.08560799999395385,
+    0.05882969999220222,
+    0.10759859997779131,
+    0.07845890003954992,
+    0.0274080999661237,
+    0.09935849998146296,
+    0.10879389999900013,
+    0.11715179996099323,
+    0.07956919999560341,
+    0.036233299993909895,
+    0.037824400002136827,
+    0.07565550005529076,
+    0.12080340000102296,
+    0.1030320999561809,
+    0.1235057000303641,
+    0.05509920004988089,
+    0.06933170004049316,
+    0.0660181000130251,
+    0.06539579998934641,
+    0.03950700000859797,
+    0.07096809998620301,
+    0.05624769994756207,
+    0.07497479999437928,
+    0.07597800000803545,
+    0.09933270001783967,
+    0.07825279998360202,
+    0.02535310003440827,
+    0.09052110003540292,
+    0.08565620001172647,
+    0.10142330004600808,
+    0.10476299998117611,
+    0.07613549998495728,
+    0.09904300002381206,
+    0.0835553000215441,
+    0.08242210000753403,
+    0.09830189996864647,
+    0.020642300019972026,
+    0.05603709997376427,
+    0.07652190001681447,
+    0.05994760000612587,
+    0.0916210999712348,
+    0.08641589997569099,
+    0.07222719996934757,
+    0.023481600044760853,
+    0.07011919998330995,
+    0.07259890000568703,
+    0.10340129997348413,
+    0.07702299999073148,
+    0.0766618000343442,
+    0.10705350001808256,
+    0.0741540000308305,
+    0.07837830000789836,
+    0.055295700032729656,
+    0.07630559999961406,
+    0.09283760003745556,
+    0.09378359996480867,
+    0.03041259996825829,
+    0.07156820001546293,
+    0.0685929000028409,
+    0.05320570000912994,
+    0.09076900000218302,
+    0.0869980999850668,
+    0.07149840000784025,
+    0.0316778999986127,
+    0.022748899995349348,
+    0.07120530004613101,
+    0.020977500011213124,
+    0.09094669995829463,
+    0.07462670002132654,
+    0.10193559998879209,
+    0.021087099972646683,
+    0.08972019999055192,
+    0.06959460000507534,
+    0.04758869996294379,
+    0.07542210002429783,
+    0.08652909996453673,
+    0.04352950002066791,
+    0.09251440002117306
+   ],
+   "errors": [],
+   "integrity": [],
+   "isolation": [],
+   "conversations": 231,
+   "wall": 62.922064542770386,
+   "rss_mb": 31.08984375
+  },
+  "lat1": {
+   "n": 31,
+   "mean": 71.56613870381167,
+   "min": 17.4193000420928,
+   "p50": 75.17339999321848,
+   "p90": 104.0198999689892,
+   "p95": 112.58050001924857,
+   "p99": 139.1293000197038,
+   "max": 139.1293000197038
+  },
+  "lat5": {
+   "n": 298,
+   "mean": 70.4975030203303,
+   "min": 15.960599994286895,
+   "p50": 75.65550005529076,
+   "p90": 102.50189999351278,
+   "p95": 114.29550003958866,
+   "p99": 179.66620001243427,
+   "max": 238.20510000223294
+  },
+  "burst": [
+   {
+    "status": 200,
+    "seconds": 3.25,
+    "source": [
+     "llm"
+    ]
+   },
+   {
+    "status": 200,
+    "seconds": 6.17,
+    "source": [
+     "llm"
+    ]
+   },
+   {
+    "status": 200,
+    "seconds": 9.12,
+    "source": [
+     "llm"
+    ]
+   },
+   {
+    "status": 200,
+    "seconds": 11.97,
+    "source": [
+     "llm"
+    ]
+   },
+   {
+    "status": 200,
+    "seconds": 14.84,
+    "source": [
+     "llm"
+    ]
+   }
+  ]
+ },
+ "stress": {
+  "baseline": {
+   "clients": 1,
+   "requests": 20,
+   "errors": 0,
+   "codes": [],
+   "rps": 29.860114718887466,
+   "n": 20,
+   "mean": 33.20796000189148,
+   "min": 16.59239997388795,
+   "p50": 21.971500013023615,
+   "p90": 78.17160000558943,
+   "p95": 82.49120000982657,
+   "p99": 106.0797999962233,
+   "max": 106.0797999962233
+  },
+  "ramp": [
+   {
+    "clients": 5,
+    "requests": 50,
+    "errors": 0,
+    "codes": [],
+    "rps": 74.95758251616904,
+    "n": 50,
+    "mean": 59.062301996164024,
+    "min": 19.50410002609715,
+    "p50": 53.34369995398447,
+    "p90": 91.90649999072775,
+    "p95": 113.30840003211051,
+    "p99": 124.03040000936016,
+    "max": 124.03040000936016
+   },
+   {
+    "clients": 10,
+    "requests": 100,
+    "errors": 0,
+    "codes": [],
+    "rps": 101.65634019104384,
+    "n": 100,
+    "mean": 87.16668100096285,
+    "min": 20.493899995926768,
+    "p50": 77.58370001101866,
+    "p90": 144.01260000886396,
+    "p95": 163.58140000374988,
+    "p99": 180.49050000263378,
+    "max": 197.14619999285787
+   },
+   {
+    "clients": 25,
+    "requests": 250,
+    "errors": 0,
+    "codes": [],
+    "rps": 127.17360443300996,
+    "n": 250,
+    "mean": 185.8818100001663,
+    "min": 26.773699966724962,
+    "p50": 174.16629998479038,
+    "p90": 310.7309000333771,
+    "p95": 451.48909999988973,
+    "p99": 536.0128000029363,
+    "max": 562.4321000068448
+   },
+   {
+    "clients": 50,
+    "requests": 500,
+    "errors": 0,
+    "codes": [],
+    "rps": 175.41315712433607,
+    "n": 500,
+    "mean": 271.4025199988391,
+    "min": 46.5466000023298,
+    "p50": 218.99470000062138,
+    "p90": 560.9892000211403,
+    "p95": 751.6506999963894,
+    "p99": 941.0791000118479,
+    "max": 1029.1875000111759
+   },
+   {
+    "clients": 100,
+    "requests": 1000,
+    "errors": 0,
+    "codes": [],
+    "rps": 178.10559741413152,
+    "n": 1000,
+    "mean": 542.9311577996123,
+    "min": 101.93900001468137,
+    "p50": 426.12740001641214,
+    "p90": 1089.7038000402972,
+    "p95": 1489.5176000427455,
+    "p99": 1828.0388999846764,
+    "max": 1970.0669999583624
+   },
+   {
+    "clients": 200,
+    "requests": 2000,
+    "errors": 0,
+    "codes": [],
+    "rps": 175.43642660812964,
+    "n": 2000,
+    "mean": 1097.9668957004615,
+    "min": 91.85789996990934,
+    "p50": 876.6713999793865,
+    "p90": 2077.2802000283264,
+    "p95": 2871.581999992486,
+    "p99": 3541.492799995467,
+    "max": 3785.4820999782532
+   }
+  ],
+  "recovery": {
+   "clients": 1,
+   "requests": 20,
+   "errors": 0,
+   "codes": [],
+   "rps": 29.751257367672714,
+   "n": 20,
+   "mean": 33.30653999873903,
+   "min": 14.637999993283302,
+   "p50": 26.909700012765825,
+   "p90": 46.828299993649125,
+   "p95": 50.05300004268065,
+   "p99": 100.6624999572523,
+   "max": 100.6624999572523
+  },
+  "volume": [
+   {
+    "tasks": 100,
+    "stored": 100,
+    "median_ms": 110.90260004857555,
+    "max_ms": 156.32920002099127,
+    "violations": 0,
+    "warnings": 0
+   },
+   {
+    "tasks": 200,
+    "stored": 200,
+    "median_ms": 141.78459998220205,
+    "max_ms": 150.75409994460642,
+    "violations": 0,
+    "warnings": 32
+   },
+   {
+    "tasks": 500,
+    "stored": 500,
+    "median_ms": 207.26350002223626,
+    "max_ms": 252.77840002672747,
+    "violations": 0,
+    "warnings": 332
+   },
+   {
+    "tasks": 1000,
+    "stored": 1000,
+    "median_ms": 355.87679996388033,
+    "max_ms": 365.82150001777336,
+    "violations": 0,
+    "warnings": 832
+   }
+  ],
+  "rss": {
+   "start": 29.46875,
+   "after_ramp": 36.796875,
+   "after_volume": 36.30859375
+  },
+  "restart_s": 1.1345024108886719,
+  "dup": 0,
+  "contexts": 396
+ },
+ "profile": {
+  "stages_ms": {
+   "DB connect + schema check": 3.6389968248956377,
+   "DB load session": 4.996178571933082,
+   "Parse + plan (process_request)": 3.991219046939578,
+   "DB save session": 10.559972222258766,
+   "JSON encode reply": 0.2942904783782387
+  },
+  "cpu_s": 2.4375,
+  "wall_s": 2.9731357999844477,
+  "peak_mb": 0.21082019805908203,
+  "big_ms": 200.9055000380613,
+  "big_peak_mb": 1.9094171524047852,
+  "requests": 126
+ },
+ "security": {
+  "checks": [
+   {
+    "id": "PT-01",
+    "test": "SQL injection in message and note text",
+    "expected": "stored as plain text, all 8 tables intact",
+    "pass": true,
+    "actual": "HTTP 200/200, tables 8/8, note title \"x'); DELETE FROM knowledge_items;--\""
+   },
+   {
+    "id": "PT-02",
+    "test": "Injection or traversal in session_id",
+    "expected": "ignored: a fresh random session, HTTP 200",
+    "pass": true,
+    "actual": "200, 200, 200, 200, 200"
+   },
+   {
+    "id": "PT-03",
+    "test": "Guessing session ids (authorization)",
+    "expected": "no guessed id sees another student's tasks",
+    "pass": true,
+    "actual": "0/20 guesses saw tasks"
+   },
+   {
+    "id": "PT-04",
+    "test": "Session fixation: client picks an unused id",
+    "expected": "server issues its own id",
+    "pass": true,
+    "actual": "server used a new id"
+   },
+   {
+    "id": "PT-05",
+    "test": "Malformed Content-Length header",
+    "expected": "HTTP 400",
+    "pass": true,
+    "actual": "HTTP/1.0 400 Bad Request"
+   },
+   {
+    "id": "PT-06",
+    "test": "Slow or incomplete body",
+    "expected": "connection closed within 20 s",
+    "pass": true,
+    "actual": "closed after 15.0 s"
+   },
+   {
+    "id": "PT-07",
+    "test": "Oversized body (2 MB declared)",
+    "expected": "HTTP 400 without reading it",
+    "pass": true,
+    "actual": "HTTP/1.0 400 Bad Request"
+   },
+   {
+    "id": "PT-08",
+    "test": "Malformed JSON and wrong field types",
+    "expected": "HTTP 400 for each, never 500",
+    "pass": true,
+    "actual": "400, 400, 400, 400, 400"
+   },
+   {
+    "id": "PT-09",
+    "test": "Path traversal / reading files over GET",
+    "expected": "404 for every path",
+    "pass": true,
+    "actual": "404, 404, 404, 404, 404"
+   },
+   {
+    "id": "PT-10",
+    "test": "Stored XSS through a note",
+    "expected": "returned as data; page never uses innerHTML",
+    "pass": true,
+    "actual": "innerHTML uses in ui/index.html: 0"
+   },
+   {
+    "id": "PT-11",
+    "test": "Version disclosure in the Server header",
+    "expected": "no Python/library version",
+    "pass": true,
+    "actual": "assistant "
+   },
+   {
+    "id": "PT-12",
+    "test": "Browser security headers on the page",
+    "expected": "all present: x-content-type-options, x-frame-options, content-security-policy, referrer-policy",
+    "pass": true,
+    "actual": "all present"
+   },
+   {
+    "id": "PT-13",
+    "test": "Regex denial of service (15 KB crafted input)",
+    "expected": "every reply in < 2 s",
+    "pass": true,
+    "actual": "slowest 0.15 s"
+   },
+   {
+    "id": "PT-14",
+    "test": "Unknown endpoint and errors",
+    "expected": "short JSON error, no stack trace",
+    "pass": true,
+    "actual": "HTTP/1.0 404 Not Found"
+   },
+   {
+    "id": "PT-15",
+    "test": "Rate limit on assistant.triseet.site",
+    "expected": "requests beyond 8 in 10 s are blocked",
+    "pass": true,
+    "actual": "200, 200, 200, 200, 200, 200, 200, 200, 200, 429"
+   },
+   {
+    "id": "PT-16",
+    "test": "Ollama port 11434 from the internet",
+    "expected": "not reachable",
+    "pass": true,
+    "actual": "not reachable"
+   },
+   {
+    "id": "PT-17",
+    "test": "Plain HTTP on the public site",
+    "expected": "301 redirect to https",
+    "pass": true,
+    "actual": "301 → https://assistant.triseet.site/"
+   }
+  ]
+ },
+ "bugs": {
+  "bugs": [
+   {
+    "id": "BUG-01",
+    "title": "Busy days after the first one in a list are ignored",
+    "severity": "High",
+    "found": "Evaluation scenario C04",
+    "before": "9ad5025",
+    "after": "HEAD",
+    "steps": "Send: \"Essay due Wednesday, 2 hours. 2 hours on weekdays. Busy on Monday, Tuesday and Wednesday.\"",
+    "expected": "Mon, Tue and Wed blocked; warning that the essay does not fit",
+    "cause": "Busy days were read one comma-separated piece at a time; \"Tuesday\" alone had no \"busy\" word.",
+    "fix": "918eafb: a busy/hours rule carries over a following list of day names",
+    "test": "tests/test_parser.py::test_busy_and_study_time_carry_over_a_list_of_days",
+    "actual_before": "blocked days [0]",
+    "actual_after": "blocked days [0, 1, 2]"
+   },
+   {
+    "id": "BUG-02",
+    "title": "Casual Vietnamese sentence read as one task; model never asked",
+    "severity": "Medium",
+    "found": "Manual check of the public site",
+    "before": "4c77594",
+    "after": "HEAD",
+    "steps": "Send: \"Tuần này mình phải lo vụ lab hóa với cái slide nhóm môn kinh tế, cuối tuần nộp\"",
+    "expected": "Two tasks (Lab hóa, Slide nhóm môn kinh tế) due this Sunday",
+    "cause": "\"với\" did not split tasks, \"cuối tuần\" was not a deadline, and any rule match skipped the model.",
+    "fix": "9ad5025: Vietnamese splitting and deadline words; long titles go to the model",
+    "test": "tests/test_vietnamese.py::test_casual_vietnamese_shares_the_closing_deadline",
+    "actual_before": "1 task(s): ['Tuần này mình phải lo vụ lab hóa với cái slide nhóm môn kinh tế']",
+    "actual_after": "2 task(s): ['Lab hóa', 'Slide nhóm môn kinh tế']"
+   },
+   {
+    "id": "BUG-03",
+    "title": "Every request fails when the server runs without a console (pythonw)",
+    "severity": "Critical",
+    "found": "Deployment on the RTX PC (auto-start task)",
+    "before": "4c77594",
+    "after": "HEAD",
+    "steps": "Start the server with pythonw.exe (sys.stdout/sys.stderr are None) and send any message",
+    "expected": "HTTP 200",
+    "cause": "http.server writes each request log line to sys.stderr, which is None under pythonw, so every handler crashed.",
+    "fix": "e1c7996: send output to data/server.log when there is no console",
+    "test": "eval/quality_eval.py bugs (BUG-03 probe)",
+    "actual_before": "no response (connection closed)",
+    "actual_after": "HTTP 200"
+   },
+   {
+    "id": "BUG-04",
+    "title": "Malformed Content-Length closes the connection without an answer",
+    "severity": "Medium",
+    "found": "Penetration test PT-05",
+    "before": "c2a1ef5",
+    "after": "HEAD",
+    "steps": "POST /api/chat with header \"Content-Length: abc\"",
+    "expected": "HTTP 400",
+    "cause": "int() on the header raised ValueError outside any error handling.",
+    "fix": "server.py: invalid Content-Length is treated as a bad request",
+    "test": "tests/test_security.py::test_malformed_content_length_gets_400",
+    "actual_before": "no response (connection closed)",
+    "actual_after": "HTTP/1.0 400"
+   },
+   {
+    "id": "BUG-05",
+    "title": "Incomplete request body holds a server thread forever (slowloris)",
+    "severity": "High",
+    "found": "Penetration test PT-06",
+    "before": "c2a1ef5",
+    "after": "HEAD",
+    "steps": "Declare Content-Length: 100, send 1 byte, keep the connection open",
+    "expected": "Server gives up and closes the connection",
+    "cause": "No socket timeout on the request handler, so the read blocks with no limit; many such connections exhaust threads.",
+    "fix": "server.py: 15 s socket timeout on every connection",
+    "test": "tests/test_security.py::test_slow_body_is_dropped",
+    "actual_before": "still open after 25 s",
+    "actual_after": "closed after 15 s"
+   },
+   {
+    "id": "BUG-06",
+    "title": "Server adopts a session id chosen by the client (session fixation)",
+    "severity": "Medium",
+    "found": "Penetration test PT-04",
+    "before": "c2a1ef5",
+    "after": "HEAD",
+    "steps": "POST a message with a made-up 32-hex session_id that does not exist",
+    "expected": "Server ignores it and issues its own random id",
+    "cause": "Any well-formed id was used to create a new session.",
+    "fix": "server.py: only ids that already exist are accepted",
+    "test": "tests/test_security.py::test_unknown_session_id_is_replaced",
+    "actual_before": "client id accepted",
+    "actual_after": "new id issued"
+   },
+   {
+    "id": "BUG-07",
+    "title": "No browser security headers; Server header shows the Python version",
+    "severity": "Low",
+    "found": "Penetration test PT-11, PT-12",
+    "before": "c2a1ef5",
+    "after": "HEAD",
+    "steps": "GET / and read the response headers",
+    "expected": "X-Content-Type-Options, X-Frame-Options, Content-Security-Policy, Referrer-Policy; no version",
+    "cause": "BaseHTTPRequestHandler defaults; no headers were added.",
+    "fix": "server.py: security headers on every response, neutral Server header",
+    "test": "tests/test_security.py::test_security_headers",
+    "actual_before": "no security headers; Server: BaseHTTP Python/3.15.0",
+    "actual_after": "nosniff/CSP present"
+   },
+   {
+    "id": "BUG-08",
+    "title": "HTTP 500 \"database is locked\" under 200 concurrent clients",
+    "severity": "Medium",
+    "found": "Stress test (concurrency ramp)",
+    "before": "3af6f1d",
+    "after": "HEAD",
+    "steps": "200 clients send 10 requests each at the same moment",
+    "expected": "Every request answered; slower is acceptable, failing is not",
+    "cause": "Each SQLite writer waited up to 10 s for the write lock, then raised OperationalError, reported as HTTP 500.",
+    "fix": "server.py: writes queue on one in-process lock; if SQLite is still busy the reply is 503 with Retry-After",
+    "test": "tests/test_security.py::test_concurrent_writes_do_not_fail",
+    "actual_before": "27 of 2000 requests failed [500]",
+    "actual_after": "0 of 2000 requests failed"
+   }
+  ]
+ }
+}

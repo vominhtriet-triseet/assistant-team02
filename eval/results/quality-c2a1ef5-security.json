@@ -1,0 +1,105 @@
+{
+ "version": "c2a1ef5",
+ "security": {
+  "checks": [
+   {
+    "id": "PT-01",
+    "test": "SQL injection in message and note text",
+    "expected": "stored as plain text, all 8 tables intact",
+    "pass": true,
+    "actual": "HTTP 200/200, tables 8/8, note title \"x'); DELETE FROM knowledge_items;--\""
+   },
+   {
+    "id": "PT-02",
+    "test": "Injection or traversal in session_id",
+    "expected": "ignored: a fresh random session, HTTP 200",
+    "pass": true,
+    "actual": "200, 200, 200, 200, 200"
+   },
+   {
+    "id": "PT-03",
+    "test": "Guessing session ids (authorization)",
+    "expected": "no guessed id sees another student's tasks",
+    "pass": true,
+    "actual": "0/20 guesses saw tasks"
+   },
+   {
+    "id": "PT-04",
+    "test": "Session fixation: client picks an unused id",
+    "expected": "server issues its own id",
+    "pass": false,
+    "actual": "server used the client id"
+   },
+   {
+    "id": "PT-05",
+    "test": "Malformed Content-Length header",
+    "expected": "HTTP 400",
+    "pass": false,
+    "actual": "no response"
+   },
+   {
+    "id": "PT-06",
+    "test": "Slow or incomplete body",
+    "expected": "connection closed within 20 s",
+    "pass": false,
+    "actual": "still open after 25.0 s"
+   },
+   {
+    "id": "PT-07",
+    "test": "Oversized body (2 MB declared)",
+    "expected": "HTTP 400 without reading it",
+    "pass": true,
+    "actual": "HTTP/1.0 400 Bad Request\r\nServ"
+   },
+   {
+    "id": "PT-08",
+    "test": "Malformed JSON and wrong field types",
+    "expected": "HTTP 400 for each, never 500",
+    "pass": true,
+    "actual": "400, 400, 400, 400, 400"
+   },
+   {
+    "id": "PT-09",
+    "test": "Path traversal / reading files over GET",
+    "expected": "404 for every path",
+    "pass": true,
+    "actual": "404, 404, 404, 404, 404"
+   },
+   {
+    "id": "PT-10",
+    "test": "Stored XSS through a note",
+    "expected": "returned as data; page never uses innerHTML",
+    "pass": true,
+    "actual": "innerHTML uses in ui/index.html: 0"
+   },
+   {
+    "id": "PT-11",
+    "test": "Version disclosure in the Server header",
+    "expected": "no Python/library version",
+    "pass": false,
+    "actual": "BaseHTTP Python/3.15.0"
+   },
+   {
+    "id": "PT-12",
+    "test": "Browser security headers on the page",
+    "expected": "all present: x-content-type-options, x-frame-options, content-security-policy, referrer-policy",
+    "pass": false,
+    "actual": "missing: x-content-type-options, x-frame-options, content-security-policy, referrer-policy"
+   },
+   {
+    "id": "PT-13",
+    "test": "Regex denial of service (15 KB crafted input)",
+    "expected": "every reply in < 2 s",
+    "pass": true,
+    "actual": "slowest 0.17 s"
+   },
+   {
+    "id": "PT-14",
+    "test": "Unknown endpoint and errors",
+    "expected": "short JSON error, no stack trace",
+    "pass": true,
+    "actual": "HTTP/1.0 404 Not Found\r\nServer: BaseHTTP"
+   }
+  ]
+ }
+}

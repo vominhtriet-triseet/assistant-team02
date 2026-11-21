@@ -1,0 +1,18 @@
+{
+ "version": "1940d9e",
+ "profile": {
+  "stages_ms": {
+   "DB connect + schema check": 11.231326982231131,
+   "DB load session": 2.2150349160212848,
+   "Parse + plan (process_request)": 5.685635718114171,
+   "DB save session": 8.609017463482267,
+   "JSON encode reply": 0.3517746032836537
+  },
+  "cpu_s": 2.96875,
+  "wall_s": 3.560670599981677,
+  "peak_mb": 0.3283653259277344,
+  "big_ms": 269.03979998314753,
+  "big_peak_mb": 1.910679817199707,
+  "requests": 126
+ }
+}
