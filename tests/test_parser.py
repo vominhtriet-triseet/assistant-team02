@@ -69,3 +69,11 @@ def test_duration_words_do_not_stay_in_the_title(today):
     for text in ("essay due Friday, it takes 3 hours", "essay due Friday (3 hours)"):
         task = parse(text, today).tasks[0]
         assert task.title == "Essay" and task.hours == 3
+
+
+def test_busy_and_study_time_carry_over_a_list_of_days(today):
+    # Evaluation scenario C04: only Monday used to be blocked, so work landed on a busy Tuesday.
+    result = parse("2 hours on weekdays. Busy on Monday, Tuesday and Wednesday.", today)
+    assert result.blocked == {0, 1, 2}
+    assert parse("3 hours on Monday and Tuesday", today).availability == {0: 3.0, 1: 3.0}
+    assert parse("Mỗi ngày 2 tiếng, bận thứ 3 và thứ 5", today, lang="vi").blocked == {1, 3}
