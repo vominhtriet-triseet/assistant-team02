@@ -69,3 +69,11 @@ def test_every_reply_has_a_vietnamese_translation():
              "Questions were written by the {name} model from your notes.",
              "Not enough time for {title}: it needs about {need}, but only {placed} fit before {limit}."}
     assert sorted(k for k in keys if k not in i18n.VI) == []
+
+
+def test_casual_vietnamese_shares_the_closing_deadline():
+    saturday = date(2026, 11, 21)
+    result = parse("Tuần này mình phải lo vụ lab hóa với cái slide nhóm môn kinh tế, cuối tuần nộp", saturday, lang="vi")
+    assert [(t.title, t.deadline) for t in result.tasks] == [
+        ("Lab hóa", date(2026, 11, 22)), ("Slide nhóm môn kinh tế", date(2026, 11, 22))]
+    assert result.assumptions == ["Hiểu 'cuối tuần' là CN 22/11."]

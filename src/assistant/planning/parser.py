@@ -28,7 +28,7 @@ KINDS = [
     ("quiz", r"\b(?:quiz(?:zes)?|kiểm tra ngắn)\b", 2.0),
     ("exam", r"\b(?:(?:exam|midterm|final|test)s?|thi|kiểm tra|giữa kỳ|cuối kỳ)\b", 8.0),
     ("project", r"\b(?:projects?|đồ án|dự án)\b", 6.0),
-    ("presentation", r"\b(?:presentation|slides|talk|thuyết trình)\b", 3.0),
+    ("presentation", r"\b(?:presentation|slides?|talk|thuyết trình)\b", 3.0),
     ("assignment", r"\b(?:(?:assignment|homework|problem set|exercises?|lab|report|essay)s?|bài tập|báo cáo|tiểu luận|bài luận|bài thực hành)\b", 4.0),
     ("reading", r"\b(?:read|reading|chapter|đọc|chương)\b", 2.0),
     ("review", r"\b(?:review|revise|study|practi[cs]e|learn|ôn tập|ôn|luyện|học bài)\b", 2.0),
@@ -37,7 +37,7 @@ KINDS = [
 PREP = r"(?:(?:due|by|before|on|until|hạn chót|hạn nộp|hạn|nộp vào|nộp|trước|vào)\s+)?"
 DEADLINE_RE = re.compile(
     PREP + rf"(?:\b(?P<rel>next|this)\s+)?\b(?P<day>{DAY_PATTERN})\b(?:\s+(?P<relvi>tuần sau|tuần tới|tuần này))?"
-    r"|" + PREP + r"\b(?P<word>today|tonight|tomorrow|hôm nay|tối nay|ngày mai|sáng mai|tối mai|mai)\b"
+    r"|" + PREP + r"\b(?P<word>today|tonight|tomorrow|hôm nay|tối nay|ngày mai|sáng mai|tối mai|mai|cuối tuần(?: này)?)\b"
     r"|" + PREP + r"\b(?:in\s+(?P<n>\d+)\s+days?|(?:trong\s+)?(?P<n2>\d+)\s+ngày\s+nữa)\b"
     r"|" + PREP + r"\b(?P<iso>\d{4}-\d{2}-\d{2})\b"
     r"|" + PREP + r"\b(?P<dd>\d{1,2})/(?P<mm>\d{1,2})\b",
@@ -71,7 +71,7 @@ BLOCKED_RE = re.compile(
 )
 PRIORITY_HIGH = re.compile(r"\b(?:urgent|asap|important|high priority|gấp|quan trọng|khẩn cấp|ưu tiên cao)\b", re.I)
 PRIORITY_LOW = re.compile(r"\b(?:low priority|không gấp|không quan trọng|ưu tiên thấp)\b", re.I)
-SPLIT_RE = re.compile(r",|;|\band\b|\bthen\b|\bbut\b|\bvà\b|\brồi\b|\bnhưng\b|\bcòn\b|\bvới cả\b", re.I)
+SPLIT_RE = re.compile(r",|;|\band\b|\bthen\b|\bbut\b|\bvà\b|\brồi\b|\bnhưng\b|\bcòn\b|\bvới cả\b|\bvới\b", re.I)
 LEADING_WORDS = [
     r"(?:so|also|then|and|but|plus|please)\b",
     r"(?:can|could|would|will) you(?: please)?(?: help me)?(?: to)?\b",
@@ -81,14 +81,14 @@ LEADING_WORDS = [
     r"to\b",
     r"(?:a|an|my|the|our|some)\b",
     r"(?:there is|there's)\b",
-    r"(?:tôi|mình|em|tui|chúng tôi|bọn mình)\b",
-    r"(?:cần|phải|sẽ|có|muốn|đang|còn|thì|là|với|hãy|giúp(?: tôi| mình| em)?|làm|hoàn thành|nộp|chuẩn bị)\b",
+    r"(?:tuần này|tôi|mình|em|tui|chúng tôi|bọn mình)\b",
+    r"(?:cần|phải|sẽ|có|muốn|đang|còn|thì|là|với|hãy|giúp(?: tôi| mình| em)?|làm|hoàn thành|nộp|chuẩn bị|lo|vụ)\b",
     r"(?:một|cái|các|những)\b",
 ]
 # Also drops what is left of "it takes 3 hours" once the duration has been read.
 TRAILING_WORDS = re.compile(
     r"\s*\b(?:due|by|before|on|until|for|at|is|which|that|in|next|this|it|takes?|needs?|lasts?|will|should"
-    r"|hạn chót|hạn nộp|hạn|vào|trước|lúc|mất|khoảng|tầm|cần|trong|nộp|là|thì|kéo dài|sẽ|nhé|nha|ạ)\s*$", re.I
+    r"|both|hạn chót|hạn nộp|hạn|vào|trước|lúc|mất|khoảng|tầm|cần|trong|nộp|là|thì|kéo dài|sẽ|nhé|nha|ạ|cả hai)\s*$", re.I
 )
 
 
@@ -147,6 +147,10 @@ def _resolve_date(m: re.Match, today: date, assumptions: list[str], lang: str = 
             assumptions.append(t(lang, "Read 'next {day}' as {date}.", day=DAY_NAMES[target].title(), date=format_day(day, lang)))
             return day
         return today + timedelta(days=delta)
+    if m.group("word") and m.group("word").lower().startswith("cuối tuần"):
+        day = today + timedelta(days=6 - today.weekday())  # this week's Sunday
+        assumptions.append(t(lang, "Read '{phrase}' as {date}.", phrase=m.group("word"), date=format_day(day, lang)))
+        return day
     if m.group("word"):
         return today + timedelta(days=0 if m.group("word").lower() in ("today", "tonight", "hôm nay", "tối nay") else 1)
     if m.group("n") or m.group("n2"):
@@ -305,8 +309,13 @@ def parse(text: str, today: date, awaiting_availability: bool = False, lang: str
         kept = [seg for seg in remaining if not _parse_availability(seg, result, bare_ok)]
         if len(kept) != len(remaining):
             sentence = " and ".join(seg.strip() for seg in kept)
-        for clause in _clauses(sentence):
-            task = _parse_task(clause, today, result, lang)
-            if task:
-                result.tasks.append(task)
+        found = [task for task in (_parse_task(c, today, result, lang) for c in _clauses(sentence)) if task]
+        # "lab and slides, due on the weekend": a deadline closing the sentence covers every task in it.
+        tail = SPLIT_RE.split(sentence)[-1]
+        if len(found) > 1 and found[-1].deadline and DEADLINE_RE.search(tail) and not task_kind(tail):
+            for task in found[:-1]:
+                if task.deadline is None:
+                    task.deadline, task.deadline_time = found[-1].deadline, found[-1].deadline_time
+                    set_priority(task, today, lang)
+        result.tasks.extend(found)
     return result

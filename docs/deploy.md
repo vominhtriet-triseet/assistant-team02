@@ -43,7 +43,7 @@ replies come back quickly. If replies are slow, use `qwen3:8b` (about 5 GB) inst
 In PowerShell, in the folder where you keep projects:
 
 ```bash
-git clone https://github.com/vominhtriet-triseet/assistant-team02.git
+git clone -b mvp-planning-assistant https://github.com/vominhtriet-triseet/assistant-team02.git
 ```
 
 ```bash
@@ -73,11 +73,16 @@ tunnel works but the assistant is not running.
 ## 3. Start the assistant with Windows
 
 Ollama and `cloudflared` already start on their own. Register the assistant as a task
-that runs at logon (replace the path with your clone):
+that runs when you log on. In PowerShell, from the clone folder:
 
-```bash
-schtasks /Create /TN "assistant-team02" /SC ONLOGON /RL LIMITED /TR "\"C:\path\to\assistant-team02\.venv\Scripts\pythonw.exe\" -m assistant serve"
+```powershell
+$action  = New-ScheduledTaskAction -Execute "$PWD\.venv\Scripts\pythonw.exe" -Argument "-m assistant serve"
+$trigger = New-ScheduledTaskTrigger -AtLogOn -User $env:USERNAME
+Register-ScheduledTask -TaskName "assistant-team02" -Action $action -Trigger $trigger
 ```
+
+(The `schtasks /TR "\"...\""` form only works in cmd; PowerShell breaks its `\"` quoting.)
+The task runs at logon, so the site is up only after you sign in to Windows.
 
 `pythonw.exe` runs without a console window. The working directory does not matter: the
 assistant finds `.env`, `data/`, and `ui/` from its install location. Stop it with

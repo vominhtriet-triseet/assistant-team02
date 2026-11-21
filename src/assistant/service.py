@@ -48,6 +48,7 @@ OFFICE_QUESTION_RE = re.compile(r"\b(?:where|when|open|opens|opening|room|hours|
                                 r"|ở đâu|chỗ nào|mấy giờ|giờ mở cửa|mở cửa|phòng nào|nằm ở)\b")
 PLANNING_HINT_RE = re.compile(r"\b(?:plan|schedule|deadline|due|exam|study|homework|assignment|task"
                               r"|kế hoạch|lịch|hạn|thi|kiểm tra|bài tập|ôn|học|nộp|đồ án|báo cáo|môn)\b")
+MAX_TITLE_WORDS = 8  # rule-read titles longer than this are probably a whole sentence
 VARIES_RE = re.compile(r"\b(?:changes|varies|depends|different|tùy|thay đổi|khác nhau)\b")
 EXAMPLES = {
     "en": ["I have an essay due Friday", "save note: Derivatives - the derivative of x^2 is 2x #calculus", "Where is the library?", "help"],
@@ -460,11 +461,16 @@ def process_request(user_input: str, session: Session | None = None, today: date
 
     parsed = parse(text, today, awaiting_availability=session.awaiting == "availability", lang=lang)
     warnings: list[str] = []
-    if not (parsed.tasks or parsed.availability or parsed.blocked) and provider and PLANNING_HINT_RE.search(lowered):
+    nothing = not (parsed.tasks or parsed.availability or parsed.blocked)
+    # A long title means the rules swallowed a casual sentence ("lo vụ lab hóa với cái slide..."): ask the model.
+    misread = any(len(task.title.split()) > MAX_TITLE_WORDS for task in parsed.tasks)
+    if (nothing or misread) and provider and PLANNING_HINT_RE.search(lowered):
         try:
             tasks, per_day = _tasks_from_llm(llm.extract_plan(provider, text, today), today, lang)
-            parsed.tasks = tasks
-            if per_day:
+            if tasks or nothing:
+                parsed.tasks = tasks
+                parsed.highlights = [h for h in parsed.highlights if h["kind"] != "task"]
+            if per_day and not parsed.availability:
                 parsed.availability = {d: per_day for d in range(7)}
             if tasks:
                 parsed.assumptions.append(t(lang, "Tasks were read by the {name} language model. Check them before relying on the plan.", name=provider.name))

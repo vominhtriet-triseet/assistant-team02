@@ -99,6 +99,7 @@ VI = {
     "every day": "mọi ngày", "weekdays": "ngày thường", "weekends": "cuối tuần",
     # parser
     "Read 'next {day}' as {date}.": "Hiểu 'next {day}' là {date}.",
+    "Read '{phrase}' as {date}.": "Hiểu '{phrase}' là {date}.",
     "Read {dm} as {date} (day/month).": "Hiểu {dm} là {date} (ngày/tháng).",
     "No date was given for the {time} deadline, so it is read as today.": "Hạn lúc {time} không có ngày nên được hiểu là hôm nay.",
     "marked as important": "được đánh dấu quan trọng", "marked as low priority": "được đánh dấu ưu tiên thấp",
