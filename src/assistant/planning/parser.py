@@ -78,6 +78,7 @@ LEADING_WORDS = [
     r"help me(?: to)?\b",
     r"(?:i|we)(?:'ve|'ll|'m)?\b",
     r"(?:have got|have to|need to|must|should|want to|got to|am going to|going to|will|have|has|got)\b",
+    r"(?:get ready for|be ready for|prepare for)\b",
     r"to\b",
     r"(?:a|an|my|the|our|some)\b",
     r"(?:there is|there's)\b",
@@ -88,7 +89,7 @@ LEADING_WORDS = [
 # Also drops what is left of "it takes 3 hours" once the duration has been read.
 TRAILING_WORDS = re.compile(
     r"\s*\b(?:due|by|before|on|until|for|at|is|which|that|in|next|this|it|takes?|needs?|lasts?|will|should"
-    r"|both|hạn chót|hạn nộp|hạn|vào|trước|lúc|mất|khoảng|tầm|cần|trong|nộp|là|thì|kéo dài|sẽ|nhé|nha|ạ|cả hai)\s*$", re.I
+    r"|both|was|were|hạn chót|hạn nộp|hạn|vào|trước|lúc|mất|khoảng|tầm|cần|trong|nộp|là|thì|kéo dài|sẽ|nhé|nha|ạ|cả hai)\s*$", re.I
 )
 
 
@@ -280,22 +281,30 @@ def set_priority(task: Task, today: date, lang: str = "en") -> None:
         task.priority, task.priority_reason = "low", t(lang, "due in {days} days", days=days)
 
 
-def _parse_availability(segment: str, result: ParseResult, bare_ok: bool) -> bool:
-    """Read study time or busy days from one segment. Returns True if the segment was about availability."""
+def _parse_availability(segment: str, result: ParseResult, bare_ok: bool) -> tuple | None:
+    """Read study time or busy days from one segment.
+
+    Returns the rule it applied, ("hours", h) or ("busy", None), so a following list of
+    bare day names can continue it; None when the segment is not about availability.
+    """
     if task_kind(segment) and not STUDY_TIME_RE.search(segment):
-        return False
+        return None
     m = DURATION_RE.search(segment)
     if m and (AVAILABILITY_HINT.search(segment) or bare_ok):
         for day in _day_scope(segment) or ALL_DAYS:
             result.availability[day] = _hours(m)
         result.highlights.append({"text": m.group(0).strip(), "kind": "time"})
-        return True
+        return ("hours", _hours(m))
     if BLOCKED_RE.search(segment):
         days = _day_scope(segment)
         if days:
             result.blocked |= days
-            return True
-    return False
+            return ("busy", None)
+    return None
+
+
+# What is left of a segment such as " Tuesday" or " and on Wednesday" once day names are removed.
+DAYS_ONLY_RE = re.compile(rf"\b(?:{DAY_PATTERN}|weekdays?|weekends?|ngày thường|cuối tuần|on|vào|only|also|too|cũng)\b|\W", re.I)
 
 
 def parse(text: str, today: date, awaiting_availability: bool = False, lang: str = "en") -> ParseResult:
@@ -306,7 +315,19 @@ def parse(text: str, today: date, awaiting_availability: bool = False, lang: str
         # A bare "3 hours" answers the study-time question, unless the sentence also names a task.
         bare_ok = awaiting_availability and not task_kind(sentence)
         remaining = [seg for seg in SPLIT_RE.split(sentence) if seg and seg.strip()]
-        kept = [seg for seg in remaining if not _parse_availability(seg, result, bare_ok)]
+        kept, rule = [], None
+        for seg in remaining:
+            days = _day_scope(seg)
+            if rule and days and not DAYS_ONLY_RE.sub("", seg).strip():
+                # "busy on Monday, Tuesday and Wednesday": the rule carries over a list of day names
+                if rule[0] == "busy":
+                    result.blocked |= days
+                else:
+                    result.availability.update({day: rule[1] for day in days})
+                continue
+            rule = _parse_availability(seg, result, bare_ok)
+            if not rule:
+                kept.append(seg)
         if len(kept) != len(remaining):
             sentence = " and ".join(seg.strip() for seg in kept)
         found = [task for task in (_parse_task(c, today, result, lang) for c in _clauses(sentence)) if task]

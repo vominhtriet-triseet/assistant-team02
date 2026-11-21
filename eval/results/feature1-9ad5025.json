@@ -1,0 +1,2724 @@
+{
+ "version": "9ad5025",
+ "today": "2026-10-26",
+ "scenarios": [
+  {
+   "id": "N01",
+   "category": "normal",
+   "fr": [
+    "FR-01",
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     3.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       1.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0021
+  },
+  {
+   "id": "N02",
+   "category": "normal",
+   "fr": [
+    "FR-01",
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Calculus problem set",
+     "2026-10-29",
+     4.0,
+     "pending"
+    ],
+    [
+     "Physics lab report",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Calculus problem set",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Calculus problem set",
+       1.0
+      ],
+      [
+       "Physics lab report",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Physics lab report",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Calculus problem set due",
+       0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Physics lab report due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0007
+  },
+  {
+   "id": "N03",
+   "category": "normal",
+   "fr": [
+    "FR-01"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Bài tập giải tích",
+     "2026-10-30",
+     3.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Bài tập giải tích",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Bài tập giải tích",
+       1.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Hạn nộp Bài tập giải tích",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0003
+  },
+  {
+   "id": "N04",
+   "category": "normal",
+   "fr": [
+    "FR-01",
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Prepare for Midterm exam",
+     "2026-10-30",
+     8.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Prepare for Midterm exam",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Prepare for Midterm exam",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Prepare for Midterm exam",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Midterm exam",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0005
+  },
+  {
+   "id": "N05",
+   "category": "normal",
+   "fr": [
+    "FR-01"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Read chapter 4",
+     "2026-10-28",
+     1.0,
+     "pending"
+    ],
+    [
+     "Finish the programming assignment",
+     "2026-10-30",
+     5.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Read chapter 4",
+       1.0
+      ],
+      [
+       "Finish the programming assignment",
+       1.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Finish the programming assignment",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Read chapter 4 due",
+       0
+      ],
+      [
+       "Finish the programming assignment",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Finish the programming assignment due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0006
+  },
+  {
+   "id": "N06",
+   "category": "normal",
+   "fr": [
+    "FR-01"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Lab report",
+     "2026-10-27",
+     2.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Lab report",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Lab report due at 17:00",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "N07",
+   "category": "normal",
+   "fr": [
+    "FR-01"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Project",
+     "2026-11-06",
+     6.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Project",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Project",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Project",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-11-06",
+     [
+      [
+       "Project due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "N08",
+   "category": "normal",
+   "fr": [
+    "FR-01"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Lab hóa",
+     "2026-11-01",
+     4.0,
+     "pending"
+    ],
+    [
+     "Slide nhóm môn kinh tế",
+     "2026-11-01",
+     3.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Lab hóa",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Lab hóa",
+       1.0
+      ],
+      [
+       "Slide nhóm môn kinh tế",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Slide nhóm môn kinh tế",
+       1.0
+      ]
+     ]
+    ],
+    [
+     "2026-11-01",
+     [
+      [
+       "Hạn nộp Lab hóa",
+       0
+      ],
+      [
+       "Hạn nộp Slide nhóm môn kinh tế",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "B01",
+   "category": "busy calendar",
+   "fr": [
+    "FR-01",
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0005
+  },
+  {
+   "id": "B02",
+   "category": "busy calendar",
+   "fr": [
+    "FR-01",
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Physics lab",
+     "2026-10-29",
+     5.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Physics lab",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Physics lab",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Physics lab",
+       1.0
+      ],
+      [
+       "Physics lab due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0005
+  },
+  {
+   "id": "B03",
+   "category": "busy calendar",
+   "fr": [
+    "FR-01",
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Báo cáo",
+     "2026-10-29",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Báo cáo",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Báo cáo",
+       2.0
+      ],
+      [
+       "Hạn nộp Báo cáo",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0002
+  },
+  {
+   "id": "B04",
+   "category": "busy calendar",
+   "fr": [
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "Not enough time for Essay: it needs about 3 h, but only 0 h fit before Fri 30 Oct: there is no study time on those days."
+   ],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     3.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0005
+  },
+  {
+   "id": "B05",
+   "category": "busy calendar",
+   "fr": [
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Slides",
+     "2026-10-28",
+     3.0,
+     "pending"
+    ],
+    [
+     "Essay",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Slides",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Slides",
+       1.0
+      ],
+      [
+       "Slides due",
+       0
+      ],
+      [
+       "Essay",
+       1.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay",
+       1.0
+      ],
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0006
+  },
+  {
+   "id": "D01",
+   "category": "deadline pressure",
+   "fr": [
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "Not enough time for Prepare for Final exam: it needs about 8 h, but only 2 h fit before Tue 27 Oct."
+   ],
+   "tasks": [
+    [
+     "Prepare for Final exam",
+     "2026-10-27",
+     8.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Prepare for Final exam",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Final exam",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "D02",
+   "category": "deadline pressure",
+   "fr": [
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "Not enough time for Lab report: it needs about 4 h, but only 3 h fit before Wed 28 Oct."
+   ],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-28",
+     6.0,
+     "pending"
+    ],
+    [
+     "Lab report",
+     "2026-10-28",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Essay due",
+       0
+      ],
+      [
+       "Lab report",
+       3.0
+      ],
+      [
+       "Lab report due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0007
+  },
+  {
+   "id": "D03",
+   "category": "deadline pressure",
+   "fr": [
+    "FR-01",
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ],
+    [
+     "Reading",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Reading",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Reading",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ],
+      [
+       "Reading due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0006
+  },
+  {
+   "id": "D04",
+   "category": "deadline pressure",
+   "fr": [
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "Không đủ thời gian cho Ôn tập: Thi giữa kỳ: cần khoảng 8 h nhưng chỉ xếp được 4 h trước T4 28/10.",
+    "Không đủ thời gian cho Đồ án: cần khoảng 6 h nhưng chỉ xếp được 4 h trước T5 29/10."
+   ],
+   "tasks": [
+    [
+     "Ôn tập: Thi giữa kỳ",
+     "2026-10-28",
+     8.0,
+     "pending"
+    ],
+    [
+     "Đồ án",
+     "2026-10-29",
+     6.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Ôn tập: Thi giữa kỳ",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Ôn tập: Thi giữa kỳ",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Thi giữa kỳ",
+       0
+      ],
+      [
+       "Đồ án",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Đồ án",
+       2.0
+      ],
+      [
+       "Hạn nộp Đồ án",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0002
+  },
+  {
+   "id": "D05",
+   "category": "deadline pressure",
+   "fr": [
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-29",
+     3.0,
+     "pending"
+    ],
+    [
+     "Slides",
+     "2026-10-29",
+     3.0,
+     "pending"
+    ],
+    [
+     "Lab report",
+     "2026-10-29",
+     3.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Slides",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Lab report",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Essay due",
+       0
+      ],
+      [
+       "Slides due",
+       0
+      ],
+      [
+       "Lab report due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0006
+  },
+  {
+   "id": "A01",
+   "category": "ambiguous input",
+   "fr": [
+    "FR-03"
+   ],
+   "feasible": null,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "clarification",
+   "warnings": [],
+   "tasks": [
+    [
+     "Calculus problem set",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [],
+   "seconds": 0.0001
+  },
+  {
+   "id": "A02",
+   "category": "ambiguous input",
+   "fr": [
+    "FR-03"
+   ],
+   "feasible": null,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "clarification",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [],
+   "seconds": 0.0001
+  },
+  {
+   "id": "A03",
+   "category": "ambiguous input",
+   "fr": [
+    "FR-03"
+   ],
+   "feasible": null,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "clarification",
+   "warnings": [],
+   "tasks": [
+    [
+     "Bài tập giải tích",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [],
+   "seconds": 0.0001
+  },
+  {
+   "id": "A04",
+   "category": "ambiguous input",
+   "fr": [
+    "FR-03"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Finish report",
+     null,
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Finish report",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Finish report",
+       2.0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "C01",
+   "category": "conflict",
+   "fr": [
+    "FR-03",
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": false,
+   "problems": [
+    "no schedule was produced"
+   ],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "Essay was was due Tue 20 Oct, so it can no longer be scheduled."
+   ],
+   "tasks": [
+    [
+     "Essay was",
+     "2026-10-20",
+     3.0,
+     "pending"
+    ]
+   ],
+   "schedule": [],
+   "seconds": 0.0004
+  },
+  {
+   "id": "C02",
+   "category": "conflict",
+   "fr": [
+    "FR-03",
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "These tasks depend on each other in a loop, so that order was ignored: Essay, Slides."
+   ],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     2.0,
+     "pending"
+    ],
+    [
+     "Slides",
+     "2026-10-30",
+     2.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Slides",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ],
+      [
+       "Slides due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0008
+  },
+  {
+   "id": "C03",
+   "category": "conflict",
+   "fr": [
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "Not enough time for Lab report: it needs about 5 h, but only 4 h fit before Wed 28 Oct."
+   ],
+   "tasks": [
+    [
+     "Lab report",
+     "2026-10-28",
+     5.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Lab report",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Lab report",
+       2.0
+      ],
+      [
+       "Lab report due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "C04",
+   "category": "conflict",
+   "fr": [
+    "FR-05"
+   ],
+   "feasible": false,
+   "pass": false,
+   "problems": [
+    "warning should mention 'Essay'",
+    "infeasible request was not disclosed"
+   ],
+   "hard_violations": [
+    "2026-10-27: 2 h planned, only 0 h available"
+   ],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-28",
+     2.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "R01",
+   "category": "rescheduling",
+   "fr": [
+    "FR-06"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     3.0,
+     "done"
+    ],
+    [
+     "Slides",
+     "2026-10-30",
+     3.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Slides",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Slides",
+       1.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Slides due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0005
+  },
+  {
+   "id": "R02",
+   "category": "rescheduling",
+   "fr": [
+    "FR-05",
+    "FR-06"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-27",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       2.0
+      ],
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0005
+  },
+  {
+   "id": "R03",
+   "category": "rescheduling",
+   "fr": [
+    "FR-05",
+    "FR-06"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     6.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0007
+  },
+  {
+   "id": "R04",
+   "category": "rescheduling",
+   "fr": [
+    "FR-05",
+    "FR-06"
+   ],
+   "feasible": false,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [
+    "Not enough time for Lab report: it needs about 8 h, but only 6 h fit before Wed 28 Oct."
+   ],
+   "tasks": [
+    [
+     "Lab report",
+     "2026-10-28",
+     8.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Lab report",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Lab report",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Lab report",
+       2.0
+      ],
+      [
+       "Lab report due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.001
+  },
+  {
+   "id": "F01",
+   "category": "FR check",
+   "fr": [
+    "FR-04"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ],
+    [
+     "Slides",
+     "2026-10-29",
+     2.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Slides",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-29",
+     [
+      [
+       "Slides due",
+       0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0006
+  },
+  {
+   "id": "F02",
+   "category": "FR check",
+   "fr": [
+    "FR-02"
+   ],
+   "feasible": true,
+   "pass": true,
+   "problems": [],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Essay",
+     "2026-10-30",
+     4.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Essay",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Essay due",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  },
+  {
+   "id": "F03",
+   "category": "FR check",
+   "fr": [
+    "FR-02"
+   ],
+   "feasible": true,
+   "pass": false,
+   "problems": [
+    "expected at least 2 tasks from the goal, got 1: ['Prepare for Get ready for Data Structures final']"
+   ],
+   "hard_violations": [],
+   "persisted": true,
+   "intent": "planning",
+   "warnings": [],
+   "tasks": [
+    [
+     "Prepare for Get ready for Data Structures final",
+     "2026-10-30",
+     8.0,
+     "pending"
+    ]
+   ],
+   "schedule": [
+    [
+     "2026-10-26",
+     [
+      [
+       "Prepare for Get ready for Data Structures final",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-27",
+     [
+      [
+       "Prepare for Get ready for Data Structures final",
+       3.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-28",
+     [
+      [
+       "Prepare for Get ready for Data Structures final",
+       2.0
+      ]
+     ]
+    ],
+    [
+     "2026-10-30",
+     [
+      [
+       "Get ready for Data Structures final",
+       0
+      ]
+     ]
+    ]
+   ],
+   "seconds": 0.0004
+  }
+ ],
+ "http": {
+  "final_times": [
+   0.039940399990882725,
+   0.031500899989623576,
+   0.007972000050358474,
+   0.018052900035399944,
+   0.006438700016587973,
+   0.006967900029849261,
+   0.00771759997587651,
+   0.006758100003935397,
+   0.006876899977214634,
+   0.00687470001867041,
+   0.007687399978749454,
+   0.025267799966968596,
+   0.007732300029601902,
+   0.01851699996041134,
+   0.008527900034096092,
+   0.007426599971950054,
+   0.0077664999989792705,
+   0.00660800002515316,
+   0.007802199979778379,
+   0.0247844000114128,
+   0.008192499983124435,
+   0.008603400026913732,
+   0.007026900013443083,
+   0.008215400041081011,
+   0.03247060003923252,
+   0.009365800011437386,
+   0.010918400017544627,
+   0.012209800013806671,
+   0.012653100013267249,
+   0.029637300001922995,
+   0.007924899982754141,
+   0.008865099982358515,
+   0.009062900033313781,
+   0.008767699997406453,
+   0.009691900049801916,
+   0.008266199962235987,
+   0.008805699995718896,
+   0.010220299998763949,
+   0.009580199955962598,
+   0.008962299965787679,
+   0.028464799979701638,
+   0.02909310004906729,
+   0.0077235999633558095,
+   0.007834199990611523,
+   0.02363740000873804,
+   0.008812299987766892,
+   0.007528999994974583,
+   0.007522200001403689,
+   0.027125399967189878,
+   0.007919600000604987,
+   0.007657999987713993,
+   0.00832070002797991,
+   0.03125930001260713,
+   0.02918449998833239,
+   0.008319800021126866,
+   0.028161599999293685,
+   0.0280112000182271,
+   0.00835050002206117,
+   0.028350899985525757,
+   0.0075517999939620495,
+   0.007532599964179099,
+   0.006567499949596822,
+   0.023212699976284057,
+   0.0079371000174433,
+   0.032713300024624914,
+   0.00822150002932176,
+   0.007609100022818893,
+   0.0065389000228606164,
+   0.021550700010266155,
+   0.02802610001526773,
+   0.029961900028865784,
+   0.007439799956046045,
+   0.007465599977876991,
+   0.06638059997931123,
+   0.006902099994476885,
+   0.006480899988673627,
+   0.008130399975925684,
+   0.03158980002626777,
+   0.02240909996908158,
+   0.007886999985203147,
+   0.007491800002753735,
+   0.01928319997387007,
+   0.03316280001308769,
+   0.008603600028436631,
+   0.008737900003325194,
+   0.00790279998909682,
+   0.008357600017916411,
+   0.009079999988898635,
+   0.02544070000294596,
+   0.008717299962881953,
+   0.02750600001309067,
+   0.00817250000545755,
+   0.008400299993809313,
+   0.00688950001494959,
+   0.007863700040616095,
+   0.008014700026251376,
+   0.007919399999082088,
+   0.00726290000602603,
+   0.007324900012463331
+  ],
+  "all_times": [
+   0.039940399990882725,
+   0.031500899989623576,
+   0.007972000050358474,
+   0.018052900035399944,
+   0.006438700016587973,
+   0.006967900029849261,
+   0.00771759997587651,
+   0.006758100003935397,
+   0.006876899977214634,
+   0.00687470001867041,
+   0.007687399978749454,
+   0.025267799966968596,
+   0.007732300029601902,
+   0.01851699996041134,
+   0.008527900034096092,
+   0.007426599971950054,
+   0.0077664999989792705,
+   0.00660800002515316,
+   0.007802199979778379,
+   0.0247844000114128,
+   0.008192499983124435,
+   0.008603400026913732,
+   0.007026900013443083,
+   0.008215400041081011,
+   0.03247060003923252,
+   0.009365800011437386,
+   0.010918400017544627,
+   0.012209800013806671,
+   0.012653100013267249,
+   0.029637300001922995,
+   0.007924899982754141,
+   0.008865099982358515,
+   0.009062900033313781,
+   0.008767699997406453,
+   0.009691900049801916,
+   0.008266199962235987,
+   0.008805699995718896,
+   0.010220299998763949,
+   0.009580199955962598,
+   0.008962299965787679,
+   0.028464799979701638,
+   0.02909310004906729,
+   0.0077235999633558095,
+   0.007834199990611523,
+   0.02363740000873804,
+   0.008812299987766892,
+   0.007528999994974583,
+   0.007522200001403689,
+   0.027125399967189878,
+   0.007919600000604987,
+   0.007657999987713993,
+   0.00832070002797991,
+   0.03125930001260713,
+   0.02918449998833239,
+   0.008319800021126866,
+   0.028161599999293685,
+   0.0280112000182271,
+   0.02816649997839704,
+   0.00835050002206117,
+   0.007077799993567169,
+   0.028350899985525757,
+   0.007040500000584871,
+   0.0075517999939620495,
+   0.007532599964179099,
+   0.006567499949596822,
+   0.023212699976284057,
+   0.006702400045469403,
+   0.0079371000174433,
+   0.02703050000127405,
+   0.032713300024624914,
+   0.007039699994493276,
+   0.00822150002932176,
+   0.007609100022818893,
+   0.0065389000228606164,
+   0.021550700010266155,
+   0.008052800025325269,
+   0.008259599970187992,
+   0.02802610001526773,
+   0.006961600040085614,
+   0.0074822999886237085,
+   0.029961900028865784,
+   0.00826299999607727,
+   0.007682900002691895,
+   0.007439799956046045,
+   0.007465599977876991,
+   0.06638059997931123,
+   0.006902099994476885,
+   0.006480899988673627,
+   0.008130399975925684,
+   0.03158980002626777,
+   0.006885099981445819,
+   0.02240909996908158,
+   0.007262200000695884,
+   0.007886999985203147,
+   0.007509000017307699,
+   0.007491800002753735,
+   0.006528800004161894,
+   0.01928319997387007,
+   0.008704699983354658,
+   0.03316280001308769,
+   0.027138100005686283,
+   0.008603600028436631,
+   0.008348100003786385,
+   0.008737900003325194,
+   0.007354200002737343,
+   0.00790279998909682,
+   0.029256800014991313,
+   0.008357600017916411,
+   0.007980400056112558,
+   0.009079999988898635,
+   0.0076018000254407525,
+   0.02544070000294596,
+   0.026783899986185133,
+   0.008717299962881953,
+   0.009037500014528632,
+   0.02750600001309067,
+   0.008738599950447679,
+   0.00817250000545755,
+   0.024503600026946515,
+   0.008400299993809313,
+   0.00688950001494959,
+   0.007863700040616095,
+   0.008014700026251376,
+   0.007919399999082088,
+   0.00726290000602603,
+   0.007324900012463331
+  ],
+  "runs": [
+   {
+    "scenario": "N01",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N01",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N01",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N02",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N02",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N02",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N03",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N03",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N03",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N04",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N04",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N04",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N05",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N05",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N05",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N06",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N06",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N06",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N07",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N07",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N07",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N08",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N08",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "N08",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B01",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B01",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B01",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B02",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B02",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B02",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B03",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B03",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B03",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B04",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B04",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B04",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B05",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B05",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "B05",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D01",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D01",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D01",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D02",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D02",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D02",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D03",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D03",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D03",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D04",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D04",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D04",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D05",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D05",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "D05",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A01",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A01",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A01",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A02",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A02",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A02",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A03",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A03",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A03",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A04",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A04",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "A04",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C01",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C01",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C01",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C02",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C02",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C02",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C03",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C03",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C03",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C04",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C04",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "C04",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R01",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R01",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R01",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R02",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R02",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R02",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R03",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R03",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R03",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R04",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R04",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "R04",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F01",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F01",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F01",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F02",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F02",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F02",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F03",
+    "repeat": 1,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F03",
+    "repeat": 2,
+    "ok": true,
+    "error": ""
+   },
+   {
+    "scenario": "F03",
+    "repeat": 3,
+    "ok": true,
+    "error": ""
+   }
+  ]
+ },
+ "scale": [
+  {
+   "tasks": 10,
+   "median_s": 0.009957800037227571,
+   "p90_s": 0.028290220024064183,
+   "success": 5,
+   "runs": 5,
+   "violations": 0,
+   "times": [
+    0.008820899995043874,
+    0.022397799999453127,
+    0.032218500040471554,
+    0.009957800037227571,
+    0.009062499972060323
+   ]
+  },
+  {
+   "tasks": 30,
+   "median_s": 0.01002010004594922,
+   "p90_s": 0.01061947998823598,
+   "success": 5,
+   "runs": 5,
+   "violations": 0,
+   "times": [
+    0.01045999996131286,
+    0.00940370000898838,
+    0.009771600016392767,
+    0.010725800006184727,
+    0.01002010004594922
+   ]
+  },
+  {
+   "tasks": 50,
+   "median_s": 0.011483599955681711,
+   "p90_s": 0.033866639982443304,
+   "success": 5,
+   "runs": 5,
+   "violations": 0,
+   "times": [
+    0.03058500000042841,
+    0.011247399961575866,
+    0.011483599955681711,
+    0.03605439997045323,
+    0.011359700001776218
+   ]
+  }
+ ],
+ "public_llm": []
+}
