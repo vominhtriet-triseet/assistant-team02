@@ -22,3 +22,9 @@ data/*.log
 
 # Project report (LaTeX, PDF, exports) is kept locally, not on GitHub
 report/
+
+# Slide style previews (temporary)
+.frontend-slides/
+
+# Evaluation report, slides and presentation guide are kept locally, not on GitHub
+docs/evaluation/

@@ -97,6 +97,9 @@ python -m pytest -q
 python eval/run.py
 ```
 
+`python eval/feature1_eval.py` runs the Feature 1 evaluation (33 scenarios, timing, reliability,
+scalability).
+
 `eval/run.py` runs the 23 benchmark cases in `eval/cases.csv` with a fixed date, so
 the results are the same on every machine.
 

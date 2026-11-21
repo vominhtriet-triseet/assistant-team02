@@ -7,7 +7,7 @@ Routes:
   POST /api/reset    {"session_id": str}  deletes everything stored for that session
 
 Sessions are stored in SQLite (data/assistant.db, or ASSISTANT_DB), so a plan survives a
-restart. The session id is a random 128-bit value that only the browser holding it knows.
+restart. The session id is a random UUID4 that only the browser holding it knows.
 """
 from __future__ import annotations
 
