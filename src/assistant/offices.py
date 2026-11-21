@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import csv
 import re
+from functools import lru_cache
 from pathlib import Path
 
 from assistant import DATA_DIR
@@ -27,6 +28,7 @@ VI_ALIASES = {
 }
 
 
+@lru_cache(maxsize=4)  # the CSV was re-read on every office question
 def load_offices(path: Path | None = None) -> list[Office]:
     path = path or DATA_DIR / "offices.csv"
     with path.open(encoding="utf-8", newline="") as f:

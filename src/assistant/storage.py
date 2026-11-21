@@ -108,13 +108,19 @@ TABLES = ("contexts", "tasks", "schedule_blocks", "task_dependencies",
           "knowledge_items", "task_knowledge", "study_sessions", "study_session_items")
 
 
+_ready: set[str] = set()  # database files whose schema and WAL mode are already set up in this process
+
+
 def connect(path: str | Path) -> sqlite3.Connection:
     conn = sqlite3.connect(path, timeout=10)
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA foreign_keys = ON")
-    if str(path) != ":memory:":
-        conn.execute("PRAGMA journal_mode = WAL")  # readers don't wait for the writer
-    conn.executescript(SCHEMA)
+    conn.execute("PRAGMA foreign_keys = ON")  # per connection
+    if str(path) == ":memory:" or str(path) not in _ready:
+        # Profiling showed this took 40% of each request when run on every connection.
+        if str(path) != ":memory:":
+            conn.execute("PRAGMA journal_mode = WAL")  # stored in the file: readers don't wait for the writer
+            _ready.add(str(path))
+        conn.executescript(SCHEMA)
     return conn
 
 

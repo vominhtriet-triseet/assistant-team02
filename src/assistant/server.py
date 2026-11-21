@@ -111,18 +111,16 @@ class Handler(BaseHTTPRequestHandler):
         if self.path != "/api/chat":
             self._json(404, {"error": "Not found."})
             return
-        if session_id:  # only ids the server issued earlier; a made-up id gets a fresh session (no fixation)
-            with closing(storage.connect(self.db_path)) as conn:
-                if storage.load(conn, session_id) is None:
-                    session_id = None
-        session_id = session_id or uuid.uuid4().hex
-        with _session_lock(session_id):
+        # One connection per request. Only ids the server issued earlier are accepted;
+        # a made-up id gets a fresh session (no session fixation).
+        lock = _session_lock(session_id) if session_id else threading.Lock()  # new students never wait for each other
+        with closing(storage.connect(self.db_path)) as conn, lock:
+            session = storage.load(conn, session_id) if session_id else None
+            if session is None:
+                session_id, session = uuid.uuid4().hex, Session()
             try:
-                with closing(storage.connect(self.db_path)) as conn:
-                    session = storage.load(conn, session_id) or Session()
                 result = process_request(data.get("message"), session, provider=self.provider)
-                with closing(storage.connect(self.db_path)) as conn:
-                    storage.save(conn, session_id, session)
+                storage.save(conn, session_id, session)
             except ValueError as exc:
                 self._json(400, {"error": str(exc), "session_id": session_id})
                 return
