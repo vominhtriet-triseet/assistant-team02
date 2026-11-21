@@ -120,6 +120,12 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8000)
     args = parser.parse_args(argv)
+    if sys.stdout is None or sys.stderr is None:
+        # pythonw.exe (no console) sets these to None; http.server's request log would then
+        # crash every request with an empty response. Send all output to a log file instead.
+        log = open(DATA_DIR / "server.log", "a", encoding="utf-8", buffering=1)  # noqa: SIM115
+        sys.stdout = sys.stdout or log
+        sys.stderr = sys.stderr or log
     server = make_server(args.host, args.port)
     ai = Handler.provider.name if Handler.provider else "off (rule-based only)"
     print(f"Student Learning Assistant running at http://{args.host}:{args.port}  (AI provider: {ai}, database: {Handler.db_path})")
